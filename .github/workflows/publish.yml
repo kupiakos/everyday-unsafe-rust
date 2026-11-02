@@ -33,7 +33,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
-          fetch-depth: 0 # We need the full history for build.sh below.
           persist-credentials: false
 
       - name: Update Rust
@@ -45,33 +44,15 @@ jobs:
       - name: Setup Rust cache
         uses: ./.github/workflows/setup-rust-cache
 
-      - name: Install Gettext
-        uses: ./.github/workflows/apt-get-install
-        with:
-          packages: gettext
-
+      # Everyday Unsafe: English only, without the PDF, to keep publishing fast.
+      # Translations and the PDF come back with upstream's steps.
       - name: Install mdbook
-        uses: ./.github/workflows/install-mdbook
+        run: cargo xtask install-tools
 
       - name: Build course in English
-        run: .github/workflows/build.sh en book
-
-      - name: Build all translations
         run: |
-          for po_lang in ${{ env.LANGUAGES }}; do
-              .github/workflows/build.sh $po_lang book/$po_lang
-              mv book/$po_lang/html book/html/$po_lang
-          done
-
-      - name: Build translation report
-        run: i18n-report report book/html/translation-report.html po/*.po
-
-      - name: Build synced translation report
-        run: |
-          cp -r po synced-po
-          MDBOOK_OUTPUT='{"xgettext": {"pot-file": "messages.pot", "granularity": 0}}' mdbook build -d synced-po
-          for file in synced-po/*.po; do msgmerge --update $file synced-po/messages.pot ; done
-          i18n-report report book/html/synced-translation-report.html synced-po/*.po
+          mdbook build -d book
+          (cd book/exerciser && zip --recurse-paths ../html/comprehensive-rust-exercises.zip comprehensive-rust-exercises/)
 
       - name: Setup Pages
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6

@@ -29,7 +29,7 @@ granularity = 0
 [output.pandoc]
 optional = true
 disabled = true
-hosted-html = "https://google.github.io/comprehensive-rust/"
+hosted-html = "https://kupiakos.github.io/everyday-unsafe-rust/"
 
 [output.pandoc.profile.pdf]
 output-file = "comprehensive-rust.pdf"
@@ -69,9 +69,9 @@ additional-css = [
   "theme/css/language-picker.css",
   "theme/css/rtl.css",
 ]
-site-url = "/comprehensive-rust/"
-git-repository-url = "https://github.com/google/comprehensive-rust"
-edit-url-template = "https://github.com/google/comprehensive-rust/edit/main/{path}"
+site-url = "/everyday-unsafe-rust/"
+git-repository-url = "https://github.com/kupiakos/everyday-unsafe-rust"
+edit-url-template = "https://github.com/kupiakos/everyday-unsafe-rust/edit/main/{path}"
 
 [output.html.fold]
 enable = true

@@ -1,0 +1,31 @@
+Quote paths substituted by the Windows bootstrap process wrapper, so that
+`--remap-path-prefix=${pwd}=.` stays one argument when the output base has a
+space in it (e.g. `C:\Users\First Last\_bazel_First Last`). Without this,
+every Rust build fails on Windows for users with a space in their user name:
+
+    error: --remap-path-prefix must contain '=' between FROM and TO
+
+Rust's command line parsing strips the quotes, so rustc sees the plain path.
+
+--- a/util/process_wrapper/private/process_wrapper.bat
++++ b/util/process_wrapper/private/process_wrapper.bat
+@@ -4,7 +4,7 @@
+ SET command=%*
+
+ :: Resolve the `${pwd}` placeholders
+-SET command=!command:${pwd}=%CD%!
++SET command=!command:${pwd}="%CD%"!
+
+ :: Resolve the `${output_base}` and `${exec_root}` placeholders.
+ :: The external directory is a junction/symlink to output_base\external.
+@@ -12,8 +12,8 @@
+ FOR /F "delims=" %%i IN ('cd external\.. ^& cd') DO SET output_base=%%i
+ FOR %%i IN ("%CD%") DO SET workspace_name=%%~nxi
+ SET exec_root=!output_base!\execroot\!workspace_name!
+-SET command=!command:${output_base}=%output_base%!
+-SET command=!command:${exec_root}=%exec_root%!
++SET command=!command:${output_base}="%output_base%"!
++SET command=!command:${exec_root}="%exec_root%"!
+
+ :: Strip out the leading `--` argument.
+ SET command=!command:~3!
