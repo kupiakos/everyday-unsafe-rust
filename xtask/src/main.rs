@@ -115,6 +115,27 @@ fn run_command(cmd: &mut Command) -> Result<()> {
     Ok(())
 }
 
+/// Returns a command for Bazel: `bazelisk` if it is on `PATH`, else `bazel`.
+///
+/// Some installs of Bazelisk (e.g. `winget`) only provide `bazelisk`.
+///
+/// On Windows, Bazel's default output root repeats the user name
+/// (`C:\Users\<name>\_bazel_<name>`), which pushes object files past
+/// `link.exe`'s 260 character path limit. Use `%USERPROFILE%\_bazel` instead.
+fn bazel_command() -> Command {
+    let exe = format!("bazelisk{}", env::consts::EXE_SUFFIX);
+    let found = env::var_os("PATH")
+        .is_some_and(|path| env::split_paths(&path).any(|dir| dir.join(&exe).is_file()));
+    let mut cmd = Command::new(if found { "bazelisk" } else { "bazel" });
+    if cfg!(windows)
+        && let Some(home) = env::var_os("USERPROFILE")
+    {
+        cmd.arg(format!("--output_user_root={}", Path::new(&home).join("_bazel").display()));
+    }
+    cmd.current_dir(Path::new(env!("CARGO_WORKSPACE_DIR")));
+    cmd
+}
+
 /// Copy `src` to `dest`, deleting `dest` first, if present.
 ///
 /// This is unlike [`fs::copy`] which fails if `dest` exists and is a
@@ -136,7 +157,6 @@ fn install_tools() -> Result<()> {
 
     // Install local and external tools from the workspace by building
     // them with Bazel.
-    let workspace_dir = Path::new(env!("CARGO_WORKSPACE_DIR"));
 
     let bazel_tools = [
         ("//mdbook-course", "mdbook-course"),
@@ -150,12 +170,29 @@ fn install_tools() -> Result<()> {
         ("@svgbob//:mdbook-svgbob__mdbook-svgbob", "mdbook-svgbob"),
     ];
 
-    let mut cmd = Command::new("bazel");
+    // On Windows, mdbook-linkcheck2 depends on aws-lc-sys, whose C build
+    // includes headers through paths longer than `cl.exe` supports when built
+    // inside Bazel's output tree. Install it with Cargo there instead.
+    let bazel_tools: Vec<_> = bazel_tools
+        .into_iter()
+        .filter(|(_, name)| !(cfg!(windows) && *name == "mdbook-linkcheck2"))
+        .collect();
+    if cfg!(windows) {
+        // Keep the version in sync with MODULE.bazel.
+        run_command(Command::new(env!("CARGO")).args([
+            "install",
+            "--locked",
+            "mdbook-linkcheck2",
+            "--version",
+            "0.12.0",
+        ]))?;
+    }
+
+    let mut cmd = bazel_command();
     cmd.arg("build");
     for (target, _) in &bazel_tools {
         cmd.arg(target);
     }
-    cmd.current_dir(workspace_dir);
     run_command(&mut cmd)?;
 
     // Copy compiled tools to ~/.cargo/bin, the same way `cargo
@@ -170,7 +207,7 @@ fn install_tools() -> Result<()> {
 
     for (target, name) in bazel_tools {
         let src = get_bazel_output_path(target)?;
-        let dest = bin_dir.join(name);
+        let dest = bin_dir.join(format!("{name}{}", env::consts::EXE_SUFFIX));
         copy(&src, &dest)?;
     }
 
@@ -396,7 +433,7 @@ fn get_output_dir(language: Option<String>, output_arg: Option<PathBuf>) -> Path
 
 /// Queries Bazel to find the output file path for a given target.
 fn get_bazel_output_path(target: &str) -> Result<PathBuf> {
-    let output = Command::new("bazel")
+    let output = bazel_command()
         .args(["cquery", "--output=files", target])
         .output()
         .with_context(|| format!("Failed to run bazel cquery for {target}"))?;

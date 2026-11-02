@@ -6,6 +6,12 @@ inout = "inout"
 esource = "esource"
 BARs = "BARs"
 
+[default.extend-words]
+# Everyday Unsafe: `b"caf\xE9"` is Latin-1 "café", and `b"SAV"` is a file
+# magic number.
+caf = "caf"
+SAV = "SAV"
+
 [type.po]
 # Localized content should not be checked for typos. English
 # in these files should be validated manually.

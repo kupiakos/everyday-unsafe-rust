@@ -6,6 +6,13 @@ module(
 bazel_dep(name = "rules_rust", version = "0.70.0")
 bazel_dep(name = "rules_rust_mdbook", version = "0.70.0")
 
+# TODO: drop the patch once rules_rust handles spaces in Windows paths.
+single_version_override(
+    module_name = "rules_rust",
+    patch_strip = 1,
+    patches = ["//patches:rules_rust-windows-spaces.patch"],
+)
+
 rust = use_extension("@rules_rust//rust:extensions.bzl", "rust")
 rust.toolchain(
     edition = "2024",

@@ -35,7 +35,7 @@ else
     # Set language and adjust site URL.
     # TODO: Clearing the redirects is no longer necessary since we restore book.toml.
     export MDBOOK_BOOK__LANGUAGE=$book_lang
-    export MDBOOK_OUTPUT__HTML__SITE_URL=/comprehensive-rust/$book_lang/
+    export MDBOOK_OUTPUT__HTML__SITE_URL=/everyday-unsafe-rust/$book_lang/
     export MDBOOK_OUTPUT__HTML__REDIRECT='{}'
 
     # Include language-specific Pandoc configuration
