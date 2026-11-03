@@ -21,7 +21,7 @@ Because it's UB for a reference to be null, `Option<&T>` can take advantage of
 that invalid value and
 [represent `None` _as_ null](https://doc.rust-lang.org/std/option/index.html#representation):
 
-```rust,editable
+```rust
 # use std::mem;
 # type T = u32;
 assert!(size_of::<&T>() == size_of::<Option<&T>>());

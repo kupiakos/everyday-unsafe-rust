@@ -8,7 +8,7 @@ minutes: 1
 - Is this `SAFETY:` comment true for `(NULL, 0)`?
 - Answer `as_slice`'s bullets one by one.
 
-```rust,no_run,editable
+```rust,no_run
 # /// # Safety
 # ///
 # /// The `slice::from_raw_parts` requirements: `data` is non-null and aligned

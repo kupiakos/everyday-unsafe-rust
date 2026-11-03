@@ -7,7 +7,7 @@ minutes: 3
 **Best**: `fn(&mut MaybeUninit<Foo>) -> &mut Foo`. The returned ref is the
 initialized input. Entirely safe to use.
 
-```rust,editable
+```rust
 # use std::mem::MaybeUninit;
 # struct Foo { x: u8, y: u16 }
 # #[cfg(any())] // Swap the stub for a body that Run and Miri can execute.

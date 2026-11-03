@@ -8,7 +8,7 @@ minutes: 2
 - Two threads update one reference count: a data race.
 - `unsafe impl<H> Send` sends `H` too. Fix: require `H: Send`.
 
-```rust,editable
+```rust
 # use std::ffi::c_void;
 #
 # pub struct Parser<H> {

@@ -10,7 +10,7 @@ Zero-cost wrapper to turn an `unsafe` deferred init API into a safe one:
 
 <!-- Claude Draft: the `# Safety` doc on `fill_in_inner`, and the second `SAFETY:` comment now cites it instead of the function's body. -->
 
-```rust,editable
+```rust
 # use std::mem::MaybeUninit;
 # struct Foo { x: u8, y: u16 }
 #[inline(always)] // ensures the no-op `assume_init_mut` inlines

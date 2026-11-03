@@ -12,7 +12,7 @@ minutes: 2
 
 ## `handler.rs`
 
-```rust,editable
+```rust
 # #[derive(Default)]
 # pub struct Logger {
 #     pub lines: Vec<String>,
@@ -36,7 +36,7 @@ impl Handler {
 
 ## `main.rs`
 
-```rust,no_run,editable
+```rust,no_run
 # #[derive(Default)]
 # pub struct Logger {
 #     pub lines: Vec<String>,

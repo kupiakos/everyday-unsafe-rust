@@ -6,7 +6,7 @@ minutes: 2
 
 **Initialize the whole struct**. Can use safe `MaybeUninit::write`.
 
-```rust,editable
+```rust
 # use std::mem::MaybeUninit;
 # struct Foo { x: u8, y: u16 }
 fn fill_in(val: &mut MaybeUninit<Foo>) -> &mut Foo {

@@ -9,7 +9,7 @@ minutes: 4
 - `on_record` makes a second one: UB.
 - Don't hold references across calls into C.
 
-```rust,editable
+```rust
 use std::ffi::{c_char, c_int};
 use std::marker::PhantomPinned;
 use std::pin::Pin;

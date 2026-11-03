@@ -33,7 +33,7 @@ impl<'a> Handler<'a> {
 
 ### `cpp_glue.rs`
 
-```rust,editable
+```rust
 # #[derive(Default)]
 # pub struct Logger {
 #     pub lines: Vec<String>,
@@ -67,7 +67,7 @@ pub unsafe fn handle_request(logger: *mut Logger) {
 
 ### `main.rs`
 
-```rust,editable
+```rust
 # mod handler {
 #     #[derive(Default)]
 #     pub struct Logger {

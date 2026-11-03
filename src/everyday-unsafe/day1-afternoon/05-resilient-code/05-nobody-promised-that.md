@@ -8,7 +8,7 @@ minutes: 2
 - The `SAFETY:` comment relied on today's behavior, not the interface.
 - Fix: check, or get the promise written down.
 
-```rust,editable
+```rust
 # mod config {
 #     pub fn names() -> Vec<String> {
 #         vec![String::from("default")]

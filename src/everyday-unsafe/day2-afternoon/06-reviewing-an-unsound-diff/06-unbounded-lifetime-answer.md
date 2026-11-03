@@ -8,7 +8,7 @@ minutes: 2
 - And `from_ptr` is safe, so callers needn't read the doc comment.
 - Best fix: borrow from whatever owns the memory.
 
-```rust,no_run,editable
+```rust,no_run
 # /// Caller must pass a pointer valid for reads of `len` elements.
 # pub fn from_ptr<T>(ptr: *const T, len: usize) -> &'static [T] {
 #     // SAFETY: The caller passes a valid pointer, as documented above.

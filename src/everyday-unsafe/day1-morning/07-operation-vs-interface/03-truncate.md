@@ -8,7 +8,7 @@ minutes: 3
 - `truncate` also writes `len`, and it's safe.
 - What's the difference from `set_len`?
 
-```rust,editable
+```rust
 # use std::ptr::NonNull;
 # pub struct Vec<T> {
 #     ptr: NonNull<T>,

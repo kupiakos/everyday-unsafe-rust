@@ -38,7 +38,7 @@ impl Handler {
 
 ### `main.rs`
 
-```rust,no_run,editable
+```rust,no_run
 # mod handler {
 #     #[derive(Default)]
 #     pub struct Logger {

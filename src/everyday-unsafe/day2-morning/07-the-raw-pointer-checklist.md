@@ -9,7 +9,7 @@ minutes: 3
 - Today, "valid" becomes a
   [checklist](https://doc.rust-lang.org/std/ptr/index.html#safety).
 
-```rust,no_run,editable
+```rust,no_run
 # use std::ptr::NonNull;
 # pub struct Logger;
 # pub struct Handler {

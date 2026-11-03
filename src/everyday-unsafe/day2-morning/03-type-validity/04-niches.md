@@ -22,7 +22,7 @@ minutes: 3
 +--------+                   +--------+
 ```
 
-```rust,editable
+```rust
 # use std::{mem, num::NonZero};
 let zero: Option<NonZero<u8>> = NonZero::new(0);
 let nonzero: Option<NonZero<u8>> = NonZero::new(10);

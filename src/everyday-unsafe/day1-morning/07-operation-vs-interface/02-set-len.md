@@ -10,7 +10,7 @@ minutes: 4
 - No unsafe operation in its body.
 - Yet it's an `unsafe fn`. Why?
 
-```rust,editable
+```rust
 # use std::ptr::NonNull;
 pub struct Vec<T> {
     ptr: NonNull<T>,

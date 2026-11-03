@@ -11,7 +11,7 @@ minutes: 3
 - Or [catch it](https://doc.rust-lang.org/std/panic/fn.catch_unwind.html#notes),
   and resume after C returns.
 
-```rust,editable
+```rust
 use std::any::Any;
 use std::ffi::c_void;
 use std::panic::{self, AssertUnwindSafe};

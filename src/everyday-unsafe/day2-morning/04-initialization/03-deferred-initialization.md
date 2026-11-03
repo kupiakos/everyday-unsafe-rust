@@ -11,7 +11,7 @@ minutes: 3
   how you explicitly manage uninit memory.
 - `MaybeUninit` disables Drop glue: you have to manually drop.
 
-```rust,editable
+```rust
 # use std::mem::MaybeUninit;
 let mut value: MaybeUninit<u32> = MaybeUninit::uninit();
 let written: &mut u32 = value.write(42);

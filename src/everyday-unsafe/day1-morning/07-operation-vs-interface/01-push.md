@@ -8,7 +8,7 @@ minutes: 3
 - Its `unsafe` block trusts the invariants.
 - Can a safe caller break them?
 
-```rust,editable
+```rust
 # use std::ptr::NonNull;
 # pub struct Vec<T> {
 #     ptr: NonNull<T>,

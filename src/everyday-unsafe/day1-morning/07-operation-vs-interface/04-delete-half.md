@@ -9,7 +9,7 @@ minutes: 3
 - `truncate(100)` now grows `len`.
 - `get` and `Drop` trust `len`: unsound.
 
-```rust,editable
+```rust
 # use std::ptr::NonNull;
 # pub struct Vec<T> {
 #     ptr: NonNull<T>,

@@ -12,7 +12,7 @@ minutes: 2
 | `unsafe {}` in `last`                  | Promises `get_unchecked` on slices | The trait's author, using the implementor's promise |
 | `unsafe {}` in `Packet::get_unchecked` | Promises `get_unchecked` on `Vec`  | `Packet`'s author, using the caller's promise       |
 
-```rust,no_run,editable
+```rust,no_run
 # /// # Safety
 # ///
 # /// `len` must return `as_slice().len()`.

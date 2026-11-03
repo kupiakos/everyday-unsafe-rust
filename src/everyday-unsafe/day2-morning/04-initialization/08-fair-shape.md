@@ -7,7 +7,7 @@ minutes: 3
 **Fair** (and common in FFI): `fn(*mut Foo)`. `unsafe` to call, `unsafe` to get
 an init `Foo`. The API user must trust the implementation.
 
-```rust,editable
+```rust
 # use std::mem::MaybeUninit;
 # struct Foo { x: u8, y: u16 }
 # #[cfg(any())] // Swap the stub for a body that Run and Miri can execute.

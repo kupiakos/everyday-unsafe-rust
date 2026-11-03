@@ -20,7 +20,7 @@ internal `unsafe`.
 
 <!-- Claude Draft: the two field-pointer `SAFETY:` comments (`x` and `y`) in the block below replace her `// SAFETY: TODO`s. -->
 
-```rust,editable
+```rust
 # use std::{mem::MaybeUninit, ptr};
 # struct Foo { x: u8, y: u16 }
 fn fill_in(val: &mut MaybeUninit<Foo>) -> &mut Foo {

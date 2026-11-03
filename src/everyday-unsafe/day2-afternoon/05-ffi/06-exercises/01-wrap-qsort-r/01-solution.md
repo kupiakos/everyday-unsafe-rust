@@ -5,7 +5,7 @@
 - C's contract binds the comparator, so `sort_by` must be `unsafe`.
 - Or skip C: `slice::sort_by` is never UB, even with a bad comparator.
 
-```rust,editable
+```rust
 use std::cmp::Ordering;
 use std::ffi::{c_int, c_void};
 

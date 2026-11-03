@@ -8,7 +8,7 @@ minutes: 3
 - The caller proves it once.
 - Accessors are safe: they rely on `new`.
 
-```rust,editable
+```rust
 use std::ffi::{CStr, c_char};
 # #[repr(C)]
 # pub struct lp_record {

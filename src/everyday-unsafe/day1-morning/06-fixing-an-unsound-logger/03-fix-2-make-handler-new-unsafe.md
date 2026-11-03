@@ -52,7 +52,7 @@ impl Handler {
 - If `main` gets its `unsafe` wrong it's the fault of `main`, not
   `Handler::new`.
 
-```rust,editable
+```rust
 # mod handler {
 #     #[derive(Default)]
 #     pub struct Logger {
