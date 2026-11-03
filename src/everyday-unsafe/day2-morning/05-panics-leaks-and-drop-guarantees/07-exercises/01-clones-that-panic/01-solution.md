@@ -6,7 +6,7 @@
 - Fix: bump the length after each write.
 
 ```rust,editable
-use std::sync::atomic::{AtomicU32, Ordering};
+use std::rc::Rc;
 
 /// Appends `n` clones of `value` to `v`.
 pub fn extend_n<T: Clone>(v: &mut Vec<T>, value: &T, n: usize) {
@@ -21,25 +21,23 @@ pub fn extend_n<T: Clone>(v: &mut Vec<T>, value: &T, n: usize) {
     }
 }
 
-static CLONES: AtomicU32 = AtomicU32::new(0);
-
 #[derive(Debug)]
-struct Fragile(String);
+struct Fragile(Rc<String>);
 
 impl Clone for Fragile {
     fn clone(&self) -> Self {
-        if CLONES.fetch_add(1, Ordering::Relaxed) == 2 {
+        if Rc::strong_count(&self.0) == 2 {
             panic!("third clone");
         }
-        Fragile(self.0.clone())
+        Fragile(Rc::clone(&self.0))
     }
 }
 
 fn main() {
-    let mut v = vec![Fragile("a".to_string())];
+    let mut v = vec![Fragile(Rc::new("a".to_string()))];
     // Still panics. Before the fix, unwinding dropped uninitialized slots.
     // Now it drops "a", "x", "x": the only initialized ones.
-    extend_n(&mut v, &Fragile("x".to_string()), 5);
+    extend_n(&mut v, &Fragile(Rc::new("x".to_string())), 5);
     println!("{v:?}");
 }
 ```
