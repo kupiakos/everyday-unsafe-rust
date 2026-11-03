@@ -68,6 +68,10 @@ fn main() {
 - **Goal:** see that a safe move breaks a safety invariant that holds raw
   addresses, and that pinning before registering restores it.
 
+- [The Self-Referential Tokenizer](../../07-bonus-exercises/01-the-self-referential-tokenizer.md)
+  is in [Bonus Exercises](../../07-bonus-exercises.md), for students who want
+  more.
+
 - Hints:
   - Hint: `return w` moves `w` out of `new`. What does the registry still point
     at? Which `Registry` method reads that pointer?

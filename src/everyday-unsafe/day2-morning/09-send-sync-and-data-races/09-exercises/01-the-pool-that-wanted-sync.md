@@ -68,6 +68,9 @@ fn main() {
 - **Goal:** C docs that say "one thread at a time" justify `Send` but not
   `Sync`, so sharing goes through a `Mutex`.
 
+- "A `Job` for the Pool" is in Bonus Exercises at the end of the day, for
+  students who want more.
+
 - Hints:
   - Hint: which trait means "may move to another thread", and which means "may
     be used from two threads at once"? Which one do the docs allow?

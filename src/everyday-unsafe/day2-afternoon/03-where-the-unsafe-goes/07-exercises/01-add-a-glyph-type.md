@@ -60,6 +60,9 @@ fn main() {
 - **Goal:** spot a `SAFETY:` comment that assumes unchecked input, then hand
   back the proof in a `Glyph` type so `Font::advance` becomes safe.
 
+- Do this exercise first. Short on time: skip
+  [The Checked/Unchecked Pair](02-the-checked-unchecked-pair.md).
+
 - Hints:
   - Hint: what does the `SAFETY:` comment assume about `text`? Who checks it?
   - Bigger hint: `"café"` reads `advance[201]`. `"hi\n"` overflows the

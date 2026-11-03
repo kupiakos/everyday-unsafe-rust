@@ -58,6 +58,9 @@ fn main() {}
 - **Goal:** compare each Rust declaration with its C type, and see that most
   binding mistakes compile silently and pass tests on x86-64.
 
+- Do this exercise first. Short on time: skip
+  [Catch Layout Drift](02-catch-layout-drift.md).
+
 - Hints:
   - Hint: read the compiler's warnings first. How many of the four mistakes does
     it report?

@@ -31,6 +31,9 @@ fn main() {
 - **Goal:** labeling each line as breaking a language rule (UB now) or a library
   rule (UB later, in safe code).
 
+- Do this exercise first. Short on time: skip
+  [Audit the Ring Buffer](02-audit-the-ring-buffer.md).
+
 - Hints:
   - Hint: for each line, ask: is it UB right now, or does it break a promise
     that later code relies on?

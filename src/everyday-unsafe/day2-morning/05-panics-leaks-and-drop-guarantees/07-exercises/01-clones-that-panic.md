@@ -45,6 +45,9 @@ fn main() {
 - **Goal:** the length must count only initialized slots at every point where a
   `clone` can panic.
 
+- "A Panicking Predicate" is in Bonus Exercises at the end of the day, for
+  students who want more.
+
 - Hints:
   - Hint: while `clone` runs, what does `v.len()` say? Which of those slots hold
     a value yet?

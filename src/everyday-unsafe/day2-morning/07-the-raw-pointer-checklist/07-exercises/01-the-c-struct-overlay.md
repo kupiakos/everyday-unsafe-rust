@@ -39,6 +39,9 @@ fn main() {
 - **Goal:** a C struct cast fails several checklist items at once (aligned, in
   bounds, valid value), and parsing field by field needs no `unsafe`.
 
+- Do this exercise first. Short on time: skip
+  [The Aligned Bump Allocator](02-the-aligned-bump-allocator.md).
+
 - Hints:
   - Hint: go down the checklist one requirement at a time. Which ones does a
     `&[u8]` already guarantee?

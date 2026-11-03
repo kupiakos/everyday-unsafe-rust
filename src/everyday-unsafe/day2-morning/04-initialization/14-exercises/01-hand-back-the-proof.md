@@ -37,6 +37,9 @@ fn main() {
 - **Goal:** initializing in place without a `&mut` to uninitialized memory, with
   a last `SAFETY:` comment that lists every field.
 
+- "A Buffer for `read()`" is in Bonus Exercises at the end of the day, for
+  students who want more.
+
 - Hints:
   - Hint: it's the `Foo` from
     [Implementing APIs Using `MaybeUninit`](../11-implementing-apis-using-maybeuninit.md),

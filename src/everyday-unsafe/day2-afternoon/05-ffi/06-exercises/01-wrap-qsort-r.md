@@ -62,6 +62,10 @@ fn main() {
 - **Goal:** write a callback trampoline with `SAFETY:` comments, and see that
   C's rules for the comparator make a safe `sort_by` unsound.
 
+- [Export a Counter to C](../../07-bonus-exercises/02-export-a-counter-to-c.md)
+  is in [Bonus Exercises](../../07-bonus-exercises.md), for students who want
+  more.
+
 - Hints:
   - Runs on the playground, which is Linux with glibc. Plain `qsort` has no
     `void *` for the closure, so you'd need a global, which breaks with re-entry

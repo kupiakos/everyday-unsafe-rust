@@ -70,6 +70,9 @@ fn main() {
 - **Goal:** turning "valid until the next call" into `&mut self`, after writing
   the safe caller that breaks `&'static`.
 
+- Do this exercise first. Short on time: skip
+  [The Wrong Input](02-the-wrong-input.md).
+
 - Hints:
   - Hint: what does `connect` do to the old message? Can you call it while you
     hold the result of `last_error`?

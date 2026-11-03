@@ -33,6 +33,9 @@ fn main() {
 - **Goal:** validity belongs to the type, not the bits: the same zero byte is
   fine as `Option<NonZeroU8>` and UB as `NonZeroU8`.
 
+- This exercise is the warm-up; [Parse the Header](02-parse-the-header.md) is
+  the one that matters. Short on time: skip this one.
+
 - Hints:
   - Hint: Bad bit patterns are UB the moment the value exists, not when it's
     used.

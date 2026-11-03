@@ -42,6 +42,9 @@ fn main() {
 - **Goal:** two overlapping slices break `&mut`'s aliasing promise, even when
   every bound is checked.
 
+- Do this exercise first. Short on time: skip
+  [The Event Loop Calls Back](02-the-event-loop-calls-back.md).
+
 - Hints:
   - Hint: what does a `&mut [u8]` promise about the bytes it covers? Which of
     those bytes does `src` cover?
