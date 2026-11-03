@@ -8,7 +8,7 @@ minutes: 1
 - Which safe caller triggers UB?
 - Hint: read `drop`'s `SAFETY:` comment. What makes it true?
 
-```rust
+```rust,editable
 use std::ptr;
 
 pub struct Buffer {
@@ -37,15 +37,16 @@ impl Drop for Buffer {
 
 - **Question:** students find a safe caller that makes `drop` free a pointer
   `Box` never allocated, and trace the bug back to the safe `from_raw`. The
-  answer is on the next slide.
+  answer is on [Answer 1: The Safe `from_raw`](02-safe-from-raw-answer.md).
 
-- Ask: "Which safe caller triggers UB?" Give the class a minute before the next
-  slide.
+- Ask: "Which safe caller triggers UB?" Give the class a minute before
+  [Answer 1: The Safe `from_raw`](02-safe-from-raw-answer.md).
 - Expected answer: `Buffer::from_raw(ptr::null_mut(), 1)`, or a pointer to a
   local array. Dropping the `Buffer` frees memory `Box` never allocated.
 - Usual wrong answer: "The bug is in `drop`, where the `unsafe` is." The
   `SAFETY:` comment states a fact that nothing establishes. Follow it back to
   where `ptr` enters: `from_raw`, which is safe.
-- Second ask: "What isn't a fix?" Collect answers. The next slide lists them.
+- Second ask: "What isn't a fix?" Collect answers.
+  [Answer 1: The Safe `from_raw`](02-safe-from-raw-answer.md) lists them.
 
 </details>

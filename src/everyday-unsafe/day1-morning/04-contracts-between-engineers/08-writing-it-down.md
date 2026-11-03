@@ -10,7 +10,7 @@ minutes: 3
 - UB: your contract with the compiler.
 - Soundness: between safe and unsafe code.
 
-```rust
+```rust,editable
 /// Decompresses `src` into `dst` without checking the size of `dst`.
 ///
 /// # Safety
@@ -31,15 +31,16 @@ pub unsafe fn decompress_unchecked(src: &[u8], dst: *mut u8) -> usize {
   warning, then `unsafe fn` plus a `# Safety` section writes the contract down
   where a reviewer can check it.
 
-- Answer to the last slide's question: a new file format without the size, or a
-  `decompressed_len` from an untrusted file, and `dst` is too small. Heap
-  overflow, with no warning from the compiler.
+- Answer to the question on [The Unwritten Contract](07-unwritten.md): a new
+  file format without the size, or a `decompressed_len` from an untrusted file,
+  and `dst` is too small. Heap overflow, with no warning from the compiler.
 - The same function, ported to Rust. Every caller must now write `unsafe`, and
   the `# Safety` section tells them what to prove.
 - The safe version would take `dst: &mut [u8]`, and the slice carries its own
   length. That's `lzo1x_decompress_safe`.
 - The two contracts this course is about: UB is the contract between you and the
-  compiler. Soundness is the contract between safe and unsafe code. Next: what
-  breaking the second one looks like.
+  compiler. Soundness is the contract between safe and unsafe code. Next,
+  [Unsafe vs Unsound](../05-unsafe-vs-unsound.md): what breaking the second one
+  looks like.
 
 </details>

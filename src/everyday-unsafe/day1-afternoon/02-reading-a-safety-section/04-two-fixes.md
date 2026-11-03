@@ -5,9 +5,11 @@ minutes: 3
 # Two Fixes
 
 - Fix 1: zero the buffer. No `unsafe` left.
-- Fix 2: `spare_capacity_mut`, typed "not initialized yet".
+- Fix 2:
+  [`spare_capacity_mut`](https://doc.rust-lang.org/std/vec/struct.Vec.html#method.spare_capacity_mut),
+  typed "not initialized yet".
 
-```rust
+```rust,editable
 use std::io::Read;
 
 fn read_n(f: &mut impl Read, n: usize) -> std::io::Result<Vec<u8>> {
@@ -26,8 +28,9 @@ fn read_n(f: &mut impl Read, n: usize) -> std::io::Result<Vec<u8>> {
   for `unsafe`?" Usually it isn't.
 - Fix 2: `v.spare_capacity_mut()` returns `&mut [MaybeUninit<u8>]`. Nothing can
   read those bytes as `u8` until you initialize them and call `set_len`.
-- `MaybeUninit` is Day 2 morning's Initialization section. Today, just notice
-  that a type can say "not initialized yet".
+- `MaybeUninit` is Day 2 morning's
+  [Initialization](../../day2-morning/04-initialization.md) section. Today, just
+  notice that a type can say "not initialized yet".
 - Prefer the fix that removes the `unsafe` block entirely.
 
 </details>

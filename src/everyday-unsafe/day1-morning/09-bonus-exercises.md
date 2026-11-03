@@ -5,8 +5,10 @@ minutes: 0
 # Bonus Exercises
 
 - More practice, for after class or if you finish early.
-- A Safe `ColorId::new` (after "Operation vs Interface")
-- A Sentinel Search (after "Soundness Assigns Responsibility")
+- A Safe `ColorId::new` (after
+  [Operation vs Interface](07-operation-vs-interface.md))
+- A Sentinel Search (after
+  [Soundness Assigns Responsibility](08-soundness-assigns-responsibility.md))
 
 <details>
 

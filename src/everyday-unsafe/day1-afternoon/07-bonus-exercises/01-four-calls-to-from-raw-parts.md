@@ -4,7 +4,9 @@ minutes: 0
 
 # Exercise: Four Calls to `from_raw_parts`
 
-- Use the table from "A Long List".
+- Use the table from
+  [A Long List](../02-reading-a-safety-section/06-a-long-list.md), or
+  [the docs](https://doc.rust-lang.org/std/slice/fn.from_raw_parts.html#safety).
 - For each call: which bullet does it break, if any?
 
 ```rust,editable,no_run

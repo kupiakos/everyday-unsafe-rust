@@ -4,11 +4,14 @@ minutes: 3
 
 # The Callback Panics
 
-- A panic escaping `extern "C"` aborts the process.
-- `extern "C-unwind"` lets it unwind instead.
-- Or catch it, and resume after C returns.
+- A panic escaping `extern "C"`
+  [aborts the process](https://doc.rust-lang.org/reference/panic.html#unwinding-across-ffi-boundaries).
+- [`extern "C-unwind"`](https://doc.rust-lang.org/nomicon/ffi.html#ffi-and-unwinding)
+  lets it unwind instead.
+- Or [catch it](https://doc.rust-lang.org/std/panic/fn.catch_unwind.html#notes),
+  and resume after C returns.
 
-```rust
+```rust,editable
 use std::any::Any;
 use std::ffi::c_void;
 use std::panic::{self, AssertUnwindSafe};
@@ -43,12 +46,15 @@ unsafe extern "C" fn on_record(user: *mut c_void, _rec: *const lp_record) {
 
 - Since Rust 1.81, a panic that reaches an `extern "C"` function aborts. Before
   that, unwinding into C was UB. An abort is safe, but it's still a crash.
-- `extern "C-unwind"` allows the panic to unwind through the foreign frames.
-  Only use it when the code in between is built to be unwound through and stays
-  consistent. A C library like `logparse` usually isn't.
+- [`extern "C-unwind"`](https://doc.rust-lang.org/reference/items/functions.html#unwinding)
+  allows the panic to unwind through the foreign frames. Only use it when the
+  code in between is built to be unwound through and stays consistent. A C
+  library like `logparse` usually isn't.
 - So catch the panic at the boundary, return to C normally, and call
   `panic::resume_unwind(payload)` in `feed` once `lp_feed` has returned.
-- Recall the morning: any call to code you don't control may panic. Here that's
-  the user's `handler`, and it can't be a promise, because handler code is safe.
+- Recall
+  [Code You Don't Control Can Panic](../../day2-morning/05-panics-leaks-and-drop-guarantees/02-code-can-panic.md):
+  any call to code you don't control may panic. Here that's the user's
+  `handler`, and it can't be a promise, because handler code is safe.
 
 </details>

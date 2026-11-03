@@ -8,7 +8,7 @@ minutes: 3
 - A `Result` can't be ignored silently.
 - Nothing left for `# Safety`: a safe `fn`.
 
-```rust
+```rust,editable
 use std::ffi::{c_char, c_int};
 
 unsafe extern "C" {
@@ -44,8 +44,9 @@ pub fn fill(buf: &mut [u8]) -> Result<usize, FillError> {
 - Everything moved into types, so `fill` is a safe function. What can't move
   into a type stays in `# Safety`.
 - Starting `out` at `0` is the conservative choice. An `*out` that might not be
-  written is a natural fit for `MaybeUninit`, which is Day 2.
-- `size_t` is `usize` here. Day 2 afternoon's ABI section is precise about C
-  types.
+  written is a natural fit for `MaybeUninit`, which is Day 2's
+  [Initialization](../../day2-morning/04-initialization.md).
+- `size_t` is `usize` here. Day 2 afternoon's
+  [ABI](../../day2-afternoon/01-abi.md) section is precise about C types.
 
 </details>

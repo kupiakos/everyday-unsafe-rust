@@ -52,10 +52,12 @@ unsafe fn at(v: &[u32], i: usize) -> u32 {
   been undone, so no true comment exists.
 
 - Hints:
-  - Hint for `hex`: what does `from_utf8_unchecked` require, and where does
-    every byte of `out` come from?
-  - Hint for `prefix`: list every bullet of `from_raw_parts`'s `# Safety`
-    section, and answer each one.
+  - Hint for `hex`: what does
+    [`from_utf8_unchecked`](https://doc.rust-lang.org/std/string/struct.String.html#method.from_utf8_unchecked)
+    require, and where does every byte of `out` come from?
+  - Hint for `prefix`: list every bullet of
+    [`from_raw_parts`'s `# Safety` section](https://doc.rust-lang.org/std/slice/fn.from_raw_parts.html#safety),
+    and answer each one.
   - Ask about `prefix`: "What if it returned `&'static [u32]`?"
   - Hint for `word_without_checksum`: what is `v.len()` at the `assert!`, and
     what is it at `get_unchecked`?

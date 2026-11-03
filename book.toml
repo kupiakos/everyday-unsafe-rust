@@ -61,6 +61,7 @@ smart-punctuation = true
 additional-js = [
   "theme/speaker-notes.js",
   "theme/redbox.js",
+  "theme/miri.js",
 ]
 additional-css = [
   "theme/css/svgbob.css",

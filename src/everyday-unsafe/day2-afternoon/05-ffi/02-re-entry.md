@@ -9,7 +9,7 @@ minutes: 4
 - `on_record` makes a second one: UB.
 - Don't hold references across calls into C.
 
-```rust
+```rust,editable
 use std::ffi::{c_char, c_int};
 use std::marker::PhantomPinned;
 use std::pin::Pin;
@@ -50,9 +50,11 @@ impl Parser {
 - **Point:** a `&mut State` held across a call into C aliases the one the
   callback makes from `user`: UB, even on one thread.
 
-- Every `SAFETY:` comment here is true about its own line. The bug is between
-  them: `state` is a `&mut State` that's live across the call into C, and
-  `on_record` makes another `&mut State` from `user` during that call.
+- Every `SAFETY:` comment here is true about its own line, including the one for
+  [`get_unchecked_mut`](https://doc.rust-lang.org/std/pin/struct.Pin.html#method.get_unchecked_mut).
+  The bug is between them: `state` is a `&mut State` that's live across the call
+  into C, and `on_record` makes another `&mut State` from `user` during that
+  call.
 - Two `&mut`s to the same `State` in use at once is UB, even with one thread.
   The compiler may assume `state.errors` and `state.records` didn't change
   during `lp_feed`.

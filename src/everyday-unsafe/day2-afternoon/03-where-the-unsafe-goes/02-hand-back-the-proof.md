@@ -8,7 +8,7 @@ minutes: 3
 - The type carries the fact from then on.
 - Here `new` checks, so it's safe.
 
-```rust
+```rust,editable
 use std::hint::unreachable_unchecked;
 
 #[derive(Clone, Copy)]
@@ -42,16 +42,18 @@ pub fn lookup(table: &[u32; 256], i: BoundedIdx<256>) -> u32 {
 - **Point:** when the check is possible, do it in a safe `new`, and let the type
   carry the fact from then on.
 
-- Back from Day 1's Undefined Behavior page. Then the point was what UB lets the
-  optimizer do. Now look at the shape: a check in `new`, and a type that
-  remembers the check passed.
-- `Record` made the caller prove its invariant (`unsafe fn new`). `BoundedIdx`
-  proves its own (a safe `new` that checks). Prefer the checking version
-  whenever the check is possible.
+- [Time Travel](../../day1-morning/03-undefined-behavior/03-time-travel.md) used
+  `unreachable_unchecked` to show what UB lets the optimizer do. Here it does
+  useful work. Look at the shape: a check in `new`, and a type that remembers
+  the check passed.
+- [`Record`](01-one-unsafe-constructor.md) made the caller prove its invariant
+  (`unsafe fn new`). `BoundedIdx` proves its own (a safe `new` that checks).
+  Prefer the checking version whenever the check is possible.
 - Ask: "What would break the `SAFETY:` comment in `get`?" Any second way to
   build a `BoundedIdx` without the check, such as a `pub` field or a derived
   `Default` (0 isn't less than `LEN` when `LEN` is 0).
-- Same move as `fill_in` returning `&mut Foo` in Initialization: once a fact is
-  established, encode it in a type.
+- Same move as `fill_in` returning `&mut Foo` in
+  [Best: Hand Back the Proof](../../day2-morning/04-initialization/10-best-shape.md):
+  once a fact is established, encode it in a type.
 
 </details>

@@ -32,14 +32,16 @@ minutes: 5
   pinned `State` → a panic → re-entry and a second `&mut` → another thread and
   `set_var` → exporting to C → questions for every boundary → exercise.
 
-- This is where the pieces meet: the bindings from ABI, `Record` from Unsafe,
-  Correctly Documented, and the pinned heap value from Pinning.
+- This is where the pieces meet: the bindings from [ABI](01-abi.md), `Record`
+  from [Where the `unsafe` Goes](03-where-the-unsafe-goes.md), and the pinned
+  heap value from [Pinning on the Heap](04-pinning/05-heap.md).
 - `Parser::new` calls `lp_new`, boxes and pins a `State`, and passes
   `lp_set_callback(raw, Some(on_record), user)`. C keeps `user` until `lp_free`.
 - Until when? `State` must stay put until C can no longer call back, so
   `Parser`'s `Drop` calls `lp_free` before the box is freed. Fields are dropped
   after `drop` returns, so that order comes for free.
-- Ask: "What can go wrong inside `on_record`?" Collect answers. The next three
-  slides are the usual ones: a panic, a second `&mut`, another thread.
+- Ask: "What can go wrong inside `on_record`?" Collect answers. The usual ones
+  are [a panic](05-ffi/01-panics.md), [a second `&mut`](05-ffi/02-re-entry.md),
+  and [another thread](05-ffi/03-other-thread.md).
 
 </details>

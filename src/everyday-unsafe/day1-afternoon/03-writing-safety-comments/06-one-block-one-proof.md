@@ -7,7 +7,7 @@ minutes: 3
 - One `unsafe` operation per block.
 - One `SAFETY:` comment per operation.
 
-```rust
+```rust,editable
 // Before: one block, two operations, one vague proof.
 fn ends_before(v: &[u32]) -> (u32, u32) {
     assert!(!v.is_empty());
@@ -38,7 +38,9 @@ fn ends(v: &[u32]) -> (u32, u32) {
 - Lints that help: `clippy::undocumented_unsafe_blocks` requires a `SAFETY:`
   comment, and `clippy::multiple_unsafe_ops_per_block` enforces one operation
   per block.
-- There are two schools of thought on block size. Day 2 comes back to proofs
-  that span several operations.
+- There are two schools of thought on block size:
+  [How Big Should an `unsafe` Block Be?](../../day2-afternoon/03-where-the-unsafe-goes/05-unsafe-block-size.md).
+  [The Proof That Spans Two Statements](../../day2-afternoon/03-where-the-unsafe-goes/04-proof-spans-statements.md)
+  comes back to proofs that span several operations.
 
 </details>

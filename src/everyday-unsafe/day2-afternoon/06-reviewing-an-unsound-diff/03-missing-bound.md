@@ -8,7 +8,7 @@ minutes: 1
 - Which safe caller triggers UB?
 - Hint: the caller chooses `H`.
 
-```rust
+```rust,editable
 use std::ffi::c_void;
 
 pub struct Parser<H> {
@@ -29,15 +29,17 @@ unsafe impl<H> Send for Parser<H> {}
 <details>
 
 - **Question:** students find a safe caller that picks an `H` that isn't `Send`,
-  like a handler holding an `Rc`. The answer is on the next slide.
+  like a handler holding an `Rc`. The answer is on
+  [Answer 2: A Missing Bound](04-missing-bound-answer.md).
 
-- Ask: "Which safe caller triggers UB?" Give the class a minute before the next
-  slide.
+- Ask: "Which safe caller triggers UB?" Give the class a minute before
+  [Answer 2: A Missing Bound](04-missing-bound-answer.md).
 - Expected answer: a handler that captures an `Rc`, with one clone kept on this
   thread. Send the `Parser` to another thread, and both threads update the
   count: a data race.
 - Usual wrong answer: "It's fine, the C library allows any thread." The
   `SAFETY:` comment is true about `raw`. Ask what it says about `handler`.
-- If the class is stuck: this morning's `LeakyBox` on the `Send`/`Sync` page.
+- If the class is stuck: `LeakyBox` in
+  [An `unsafe impl` for Every `T`](../../day2-morning/09-send-sync-and-data-races/05-every-t.md).
 
 </details>

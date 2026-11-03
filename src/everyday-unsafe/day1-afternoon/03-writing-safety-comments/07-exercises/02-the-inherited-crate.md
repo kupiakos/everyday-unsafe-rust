@@ -5,7 +5,10 @@ minutes: 10
 # Exercise: The Inherited Crate
 
 - The author has been laid off. Add a `SAFETY:` comment to each `unsafe` block.
-- Read each callee's `# Safety` first.
+- Read each callee's `# Safety` first:
+  [`slice::get_unchecked`](https://doc.rust-lang.org/std/primitive.slice.html#method.get_unchecked)
+  and
+  [`str::from_utf8_unchecked`](https://doc.rust-lang.org/std/str/fn.from_utf8_unchecked.html#safety).
 - Stuck on one? Find a record that causes UB, then fix the code.
 
 ```rust,editable
@@ -49,6 +52,8 @@ fn main() {
   - If they're stuck on the fix: does `from_utf8_unchecked` have a checked
     version?
   - Nothing breaks when the bad `&str` is made. It breaks later, when something
-    like `chars()` trusts it. Day 2 calls this a library invariant.
+    like `chars()` trusts it. Day 2's
+    [Library vs Language Invariants](../../../day2-morning/06-library-vs-language-invariants.md)
+    calls this a library invariant.
 
 </details>

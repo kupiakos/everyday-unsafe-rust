@@ -33,7 +33,6 @@ minutes: 3
 - "Boring" `unsafe` follows a documented pattern with a complete `SAFETY:`
   comment. Anything relying on unsettled rules, or that you can't finish the
   proof for, goes to an `unsafe` reviewer.
-- If the course adopts Review Triage, its full version goes here.
 - Close: ask each student for one change they'll make to code they own.
 
 </details>

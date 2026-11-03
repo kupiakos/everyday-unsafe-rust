@@ -30,6 +30,6 @@ int lzo1x_decompress_safe(const unsigned char *src, lzo_uint src_len,
 - Ask: how can a caller use the trusting one correctly? The arguments don't say
   how big the output will be.
 - Usual answer: "just use `_safe`". Often right. The trusting one is faster, and
-  the next slide shows how teams used it anyway.
+  [The Unwritten Contract](07-unwritten.md) shows how teams used it anyway.
 
 </details>

@@ -67,11 +67,12 @@ impl Reader {
   after the next call on `r`. The rest is handled inside `next_line` or goes in
   the normal docs.
 
-- the `Reader` wrapper is "Move It into a Type" again. A field invariant
-  replaces bullet 1, and borrowing `&mut self` replaces bullet 2. Its `Drop`
-  (not shown) would call `reader_close`.
-- the unbounded `'a` on `next_line` is a Day 2 topic (Lifetimes). Today, notice
-  that the `# Safety` bullet is what limits it.
+- the `Reader` wrapper is [Move It into a Type](../../05-move-it-into-a-type.md)
+  again. A field invariant replaces bullet 1, and borrowing `&mut self` replaces
+  bullet 2. Its `Drop` (not shown) would call `reader_close`.
+- the unbounded `'a` on `next_line` is a Day 2 topic
+  ([Picking the Lifetime of a Raw Borrow](../../../../day2-morning/10-picking-the-lifetime-of-a-raw-borrow.md)).
+  Today, notice that the `# Safety` bullet is what limits it.
 - Expect six items. Two stay in `# Safety`: `r` is open, and the returned slice
   isn't used after the next call on `r`.
 - Usual wrong answer: "for the duration of the call" for the slice. It outlives

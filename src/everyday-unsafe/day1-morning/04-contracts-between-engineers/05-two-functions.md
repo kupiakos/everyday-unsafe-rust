@@ -19,9 +19,11 @@ int lzo1x_decompress_safe(const unsigned char *src, lzo_uint src_len,
 <details>
 
 - **Question:** students guess how two LZO decompress functions with the same
-  signature can differ. The answer is on the next slide.
+  signature can differ. The answer is on
+  [`lzo1x_decompress` Trusts the Caller](06-trusting-one.md).
 
-- Story 1.4. Let the class guess before the next slide.
+- Let the class guess before showing
+  [`lzo1x_decompress` Trusts the Caller](06-trusting-one.md).
 - Hint if needed: `dst_len` is a pointer. Is it an input, an output, or both?
 - The name `_safe` is a clue that the other one isn't.
 

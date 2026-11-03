@@ -8,7 +8,7 @@ minutes: 3
 - Broken at `set_len`, before `read` runs.
 - What happens next doesn't matter.
 
-```rust
+```rust,editable
 use std::io::Read;
 
 fn read_n_bad(f: &mut impl Read, n: usize) -> std::io::Result<Vec<u8>> {

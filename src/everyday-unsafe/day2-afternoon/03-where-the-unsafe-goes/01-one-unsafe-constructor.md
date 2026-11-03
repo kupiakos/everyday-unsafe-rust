@@ -8,7 +8,7 @@ minutes: 3
 - The caller proves it once.
 - Accessors are safe: they rely on `new`.
 
-```rust
+```rust,editable
 use std::ffi::{CStr, c_char};
 # #[repr(C)]
 # pub struct lp_record {
@@ -49,9 +49,11 @@ impl<'a> Record<'a> {
 - **Point:** one `unsafe fn new` takes the C contract once. A private field and
   its field invariant make every accessor safe to call.
 
-- The `# Safety` section repeats the C library's contract for `lp_record`. The
-  callback calls `Record::new` once, with one `SAFETY:` comment that points at
-  the C docs.
+- The `# Safety` section repeats the C library's contract for `lp_record`, which
+  is what
+  [`CStr::from_ptr`](https://doc.rust-lang.org/std/ffi/struct.CStr.html#method.from_ptr)
+  requires. The callback calls `Record::new` once, with one `SAFETY:` comment
+  that points at the C docs.
 - The accessors still contain `unsafe` blocks, but they're safe to call. Their
   `SAFETY:` comments rely on a field invariant, and only `new` can create a
   `Record`, so the invariant always holds.

@@ -19,12 +19,16 @@ minutes: 3
 - **Point:** fail as early as you can: a compile error beats a panic, and a
   panic beats UB.
 
-- The ladder the whole morning has been climbing.
-- The logger's Fix 1 turned UB into a compile error. `first_checked`'s `assert!`
-  turned UB into a panic. The ESP32 `cfg` made the wrong build fail to compile.
+- The ladder the whole day has been climbing.
+- The logger's
+  [Fix 1: Stay Safe](../../day1-morning/06-fixing-an-unsound-logger/02-fix-1-stay-safe.md)
+  turned UB into a compile error. `first_checked`'s `assert!`, in
+  [Four Ways to Read `x[0]`](../../day1-morning/07-operation-vs-interface/05-four-ways.md),
+  turned UB into a panic. The ESP32 `cfg` in
+  [The Sibling Chip](02-sibling-chip.md) made the wrong build fail to compile.
 - For `Image`, either top row is fine. Which one to pick depends on whether
   32-bit targets matter to you.
-- Close the morning: the question for every `unsafe` review is "can any safe
+- Close the section: the question for every `unsafe` review is "can any safe
   caller, on any target we support, cause UB?"
 
 </details>

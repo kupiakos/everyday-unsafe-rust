@@ -12,6 +12,7 @@ use std::ffi::{c_int, c_void};
 type Compar =
     unsafe extern "C" fn(*const c_void, *const c_void, *mut c_void) -> c_int;
 
+# #[cfg(not(miri))]
 unsafe extern "C" {
     // glibc: void qsort_r(void *base, size_t nmemb, size_t size,
     //          int (*compar)(const void *, const void *, void *), void *arg);
@@ -23,6 +24,18 @@ unsafe extern "C" {
         arg: *mut c_void,
     );
 }
+# // Miri can't call C, so it gets a Rust insertion sort in place of glibc's.
+# #[cfg(miri)]
+# unsafe fn qsort_r(base: *mut c_void, nmemb: usize, size: usize, compar: Compar, arg: *mut c_void) {
+#     let at = |i: usize| unsafe { base.cast::<u8>().add(i * size) };
+#     for i in 1..nmemb {
+#         let mut j = i;
+#         while j > 0 && unsafe { compar(at(j - 1).cast(), at(j).cast(), arg) } > 0 {
+#             unsafe { std::ptr::swap_nonoverlapping(at(j - 1), at(j), size) };
+#             j -= 1;
+#         }
+#     }
+# }
 
 /// # Safety
 ///
@@ -90,9 +103,11 @@ fn main() {
   through, and glibc doesn't document that for `qsort_r`. Here the abort is the
   sound answer.
 - Usual wrong answer: "A comparator that isn't a total order gives a garbage
-  order, but no UB." That's true of Rust's `slice::sort_by`, whose docs say it
-  may panic or leave an unspecified order. For C's `qsort`, it's UB. glibc up to
-  2.38 had a real out-of-bounds write in that case (Qualys, 2024).
+  order, but no UB." That's true of Rust's
+  [`slice::sort_by`](https://doc.rust-lang.org/std/primitive.slice.html#method.sort_by),
+  whose docs say it may panic or leave an unspecified order. For C's `qsort`,
+  it's UB. glibc up to 2.38 had a real out-of-bounds write in that case (Qualys,
+  2024).
 - So a safe `sort_by` that takes any closure is unsound: the closure is
   caller-provided code, and it may lie. Fixes: make it an `unsafe fn` with that
   `# Safety` bullet, or call `slice::sort_by` instead.

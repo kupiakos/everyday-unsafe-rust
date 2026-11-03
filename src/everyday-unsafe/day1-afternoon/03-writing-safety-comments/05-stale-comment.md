@@ -8,7 +8,7 @@ minutes: 3
 - The comment still says "checked above".
 - Reviewers trust it anyway.
 
-```rust
+```rust,editable
 fn pick(v: &[u32], i: usize) -> u32 {
     // An `assert!(i < v.len())` used to be here, until a refactor moved it
     // into the caller.
@@ -23,13 +23,15 @@ fn pick(v: &[u32], i: usize) -> u32 {
   could undo it. After the refactor, "checked above" is false and the safe
   `pick` is unsound.
 
-- Same `pick` as the last slide, after a refactor. `pick` is safe, so now any
-  caller can pass any `i`: it's unsound.
+- Same `pick` as [Evidence, Not Reassurance](04-evidence-not-reassurance.md),
+  after a refactor. `pick` is safe, so now any caller can pass any `i`: it's
+  unsound.
 - A check is only evidence if nothing since then could undo it, and if it's
   still there.
 - Fixes: move the `assert!` back next to the block, or make `pick` an
   `unsafe fn` whose `# Safety` says `i < v.len()`, or use `v[i]`.
-- The previous slide's comment named the `assert!` and the property. A reviewer
-  of the refactor would have seen it go stale.
+- The comment in [Evidence, Not Reassurance](04-evidence-not-reassurance.md)
+  named the `assert!` and the property. A reviewer of the refactor would have
+  seen it go stale.
 
 </details>

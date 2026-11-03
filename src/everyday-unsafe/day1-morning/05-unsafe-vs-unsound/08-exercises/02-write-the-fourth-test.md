@@ -56,8 +56,11 @@ fn causes_ub() {
   - Hint for the fixes: either `payload` checks the length byte, or its caller
     does. How would the signature say which?
   - If they add `assert!(!msg.is_empty())`: what does `msg[0]` already do on an
-    empty message? What does `get_unchecked` actually require?
-  - If this runs before the logger, keep the two fixes short: the logger covers
-    them next.
+    empty message? What does
+    [`get_unchecked`](https://doc.rust-lang.org/std/primitive.slice.html#method.get_unchecked)
+    actually require?
+  - If this runs before
+    [Fixing an Unsound Logger](../../06-fixing-an-unsound-logger.md), keep the
+    two fixes short: the logger covers them.
 
 </details>

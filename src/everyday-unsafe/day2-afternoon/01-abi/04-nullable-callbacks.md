@@ -6,10 +6,11 @@ minutes: 3
 
 - C function pointers may be `NULL`.
 - Rust `fn` pointers may not.
-- `Option<extern "C" fn(..)>`: same ABI.
+- `Option<extern "C" fn(..)>`:
+  [same ABI](https://doc.rust-lang.org/std/option/index.html#representation).
 - `None` is `NULL`.
 
-```rust
+```rust,editable
 use std::ffi::c_void;
 
 #[repr(C)]
@@ -44,12 +45,14 @@ unsafe extern "C" {
 
 - A Rust `fn` pointer, like a reference, is never null. A null one is an invalid
   value, which is UB.
-- `Option<fn>` uses null as `None`. This is guaranteed for `extern "C" fn`, so
-  `Option<lp_callback>` has exactly the ABI of C's `lp_callback`.
+- `Option<fn>` uses null as `None`. This is
+  [guaranteed](https://doc.rust-lang.org/std/option/index.html#representation)
+  for `extern "C" fn`, so `Option<lp_callback>` has exactly the ABI of C's
+  `lp_callback`.
 - Direction matters: passing a non-`Option` `fn` to C is only less flexible.
   Receiving one from C (a return value or struct field) that might be null is
   UB.
 - Callbacks are `unsafe extern "C" fn`: C may call them with any `user` pointer,
-  so the callback has a precondition. We write it in the FFI section.
+  so the callback has a precondition. We write it in [FFI](../05-ffi.md).
 
 </details>

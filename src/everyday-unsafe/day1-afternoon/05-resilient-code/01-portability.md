@@ -8,7 +8,7 @@ Platform-specific code may be sound on one platform and unsound on another.
 
 Soundness may be platform-specific: try to avoid it where you can!
 
-```rust
+```rust,editable
 /// Returns 32 bits from the hardware random number generator.
 #[cfg(target_arch = "xtensa")]
 pub fn hw_random_u32() -> u32 {

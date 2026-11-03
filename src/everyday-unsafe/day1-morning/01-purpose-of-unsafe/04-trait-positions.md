@@ -8,7 +8,7 @@ minutes: 3
 - For each one: does it ask, or answer?
 - Who has to do the homework?
 
-```rust
+```rust,editable
 /// # Safety
 ///
 /// `len` must return `as_slice().len()`.
@@ -63,9 +63,10 @@ fn main() {
 
 - **Question:** students fill in each `SAFETY: ?` and work out who has the
   homework for each `unsafe`: implementors, callers, or the author of that body.
-  The answer is on the next slide.
+  The answer is on [Who Has the Homework](05-trait-homework.md).
 
-- Builds on "Two roles": the same ask/answer split, now with traits.
+- Builds on [Two Roles of `unsafe`](03-two-roles.md): the same ask/answer split,
+  now with traits.
 - Ask: fill in each `SAFETY: ?`. Whose promise does each block lean on?
 - Expected answers:
   - `last`'s block leans on the trait's promise, made by each implementor.

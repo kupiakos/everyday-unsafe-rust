@@ -25,8 +25,9 @@ move. By the end, you can:
 - One story all afternoon: bindings for a small C library, a safe wrapper, a C++
   object that registers `this`, the callback from C, and a review of a
   contributor's PR.
-- Each section reuses the morning's rules (initialization, panics, `Send`) at a
-  real boundary. Point back to them when they come up.
+- Each section reuses [The Rules](../day2-morning/02-the-rules.md)
+  (initialization, panics, `Send`) at a real boundary. Point back to them when
+  they come up.
 - Pinning gets the most time. Teams avoid it in ways that cost them later.
 - Examples run in Compiler Explorer, with C and Rust side by side.
 

@@ -6,7 +6,8 @@ minutes: 5
 
 - Every `unsafe fn` in `std` has `# Safety`.
 - It lists what the caller must ensure.
-- Running example: `Vec::set_len`.
+- Running example:
+  [`Vec::set_len`](https://doc.rust-lang.org/std/vec/struct.Vec.html#method.set_len).
 
 <!-- mdbook-xgettext: skip -->
 
@@ -31,7 +32,9 @@ minutes: 5
   `read()` buffer breaks one → two fixes → `as_bytes_mut`'s bullet with a clock
   → `from_raw_parts`'s five bullets → exercise.
 
-- Open the `Vec::set_len` docs live. Scroll to the `# Safety` heading.
+- Open the
+  [`Vec::set_len` docs](https://doc.rust-lang.org/std/vec/struct.Vec.html#method.set_len)
+  live. Scroll to the `# Safety` heading.
 - The section is written for you, the caller. If you call the function, you
   promise everything in it.
 - This is the first half of the core loop: find the contract before you write

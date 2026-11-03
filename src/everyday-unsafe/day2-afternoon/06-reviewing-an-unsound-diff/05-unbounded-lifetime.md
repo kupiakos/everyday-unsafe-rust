@@ -8,7 +8,7 @@ minutes: 1
 - Which safe caller triggers UB?
 - Hint: compare the doc comment with the signature.
 
-```rust
+```rust,editable
 /// Caller must pass a pointer valid for reads of `len` elements.
 pub fn from_ptr<T>(ptr: *const T, len: usize) -> &'static [T] {
     // SAFETY: The caller passes a valid pointer, as documented above.
@@ -20,10 +20,10 @@ pub fn from_ptr<T>(ptr: *const T, len: usize) -> &'static [T] {
 
 - **Question:** students find both bugs: a safe function with a precondition in
   its doc comment, and a `'static` lifetime tied to nothing. The answer is on
-  the next slide.
+  [Answer 3: An Unbounded Lifetime](06-unbounded-lifetime-answer.md).
 
-- Ask: "Which safe caller triggers UB?" Give the class a minute before the next
-  slide.
+- Ask: "Which safe caller triggers UB?" Give the class a minute before
+  [Answer 3: An Unbounded Lifetime](06-unbounded-lifetime-answer.md).
 - Expected answer:
   `let v = vec![1]; let s = from_ptr(v.as_ptr(), 1);
   drop(v);`, then read
@@ -32,6 +32,8 @@ pub fn from_ptr<T>(ptr: *const T, len: usize) -> &'static [T] {
   precondition in its doc comment, or the `'static` lifetime.
 - Usual wrong answer: "It's fine if callers follow the doc comment." It's a safe
   function: callers don't have to.
-- If the class is stuck: the morning's Lifetimes section.
+- If the class is stuck:
+  [Picking the Lifetime of a Raw Borrow](../../day2-morning/10-picking-the-lifetime-of-a-raw-borrow.md),
+  where the caller picks `'a`.
 
 </details>

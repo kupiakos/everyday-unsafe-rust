@@ -65,7 +65,8 @@ fn main() {
   printable ASCII". Sound, but it hands the proof to every caller instead of
   back to a type.
 - Ask: "What would break `Glyph`?" A `pub` field, or `impl From<u8>`. A derived
-  `Default` is fine here (0 is below 95), unlike `BoundedIdx<0>`.
+  `Default` is fine here (0 is below 95), unlike `BoundedIdx<0>` in
+  [Hand Back the Proof](../../02-hand-back-the-proof.md).
 - Ask: "What if `Font` held a `Vec<u8>` of any length?" A `Glyph` checked
   against one font proves nothing about another. The fixed length is what makes
   the proof portable.

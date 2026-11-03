@@ -12,7 +12,7 @@ minutes: 1
 - **Goal:** find the move that breaks a registered address, and fix it with
   `Pin`.
 
-- "The Self-Referential Tokenizer" is in Bonus Exercises at the end of the day,
-  for students who want more.
+- [The Self-Referential Tokenizer](../07-bonus-exercises/01-the-self-referential-tokenizer.md)
+  is in [Bonus Exercises](../07-bonus-exercises.md), for students who want more.
 
 </details>

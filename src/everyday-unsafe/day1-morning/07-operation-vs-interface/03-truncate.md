@@ -8,7 +8,7 @@ minutes: 3
 - `truncate` also writes `len`, and it's safe.
 - What's the difference from `set_len`?
 
-```rust
+```rust,editable
 # use std::ptr::NonNull;
 # pub struct Vec<T> {
 #     ptr: NonNull<T>,
@@ -35,18 +35,20 @@ impl<T> Vec<T> {
 
 - **Answer:** a safe `set_len` lets `v.set_len(100)` break `get`. **Question:**
   `truncate` writes the same field and is safe: what's different? The answer is
-  on the next slide.
+  on [Delete Half of `truncate`](04-delete-half.md).
 
-- Answer to the last slide's question: `set_len` is `unsafe` because a safe one
-  lets `v.set_len(100)` break `get`, with no `unsafe` in the caller.
+- Answer to the question on [`set_len` Is Just a Field Write](02-set-len.md):
+  `set_len` is `unsafe` because a safe one lets `v.set_len(100)` break `get`,
+  with no `unsafe` in the caller.
 - Shrinking can't break the `len` invariant: the first `len` values were already
   initialized.
 - Dropping the removed values keeps their destructors running, and `len` stops
   covering them, so each is dropped exactly once.
 - `len` is updated before the drops, like in the standard library. Why that
-  order matters comes on Day 2, with panics.
+  order matters comes on Day 2, with panics, in
+  [Fix: Leak Instead](../../day2-morning/05-panics-leaks-and-drop-guarantees/04-leak-instead.md).
 - Ask: what's the difference between `set_len` and `truncate`? Usual wrong
   answer: "`truncate` does something safer". Expected answer: not the operation.
-  The interface. The next slide opens with that.
+  The interface. [Delete Half of `truncate`](04-delete-half.md) opens with that.
 
 </details>

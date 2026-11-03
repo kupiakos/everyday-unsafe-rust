@@ -5,11 +5,14 @@ minutes: 3
 # Exporting Rust to C
 
 - `#[unsafe(no_mangle)] pub extern "C" fn`
-- `Option<&mut T>` parameter: can stay safe.
+- `Option<&mut T>` parameter
+  ([nullable pointer](https://doc.rust-lang.org/std/option/index.html#representation)):
+  can stay safe.
 - Dereferences a raw pointer: `unsafe extern "C" fn`.
-- `MaybeUninit<T>` has `T`'s size, alignment, and ABI.
+- `MaybeUninit<T>` has
+  [`T`'s size, alignment, and ABI](https://doc.rust-lang.org/std/mem/union.MaybeUninit.html#layout-1).
 
-```rust
+```rust,editable
 use std::mem::MaybeUninit;
 
 #[repr(C)]
@@ -51,11 +54,13 @@ pub unsafe extern "C" fn stats_get_raw(out: *mut Stats) {
   handles NULL itself, and no Rust caller can misuse it. It can stay safe.
 - A C caller can still pass a dangling pointer. That's on the C side, and the
   header comment should say "NULL, or a valid `struct Stats *`".
-- `no_mangle` needs `unsafe(..)` in the 2024 edition: two exported functions
-  with the same name are UB at link time, and the `SAFETY:` comment says why
-  this one is unique.
-- Why `MaybeUninit`: C's `out` usually points at an uninitialized local. Our
-  rule from Initialization is to never make a `&mut Stats` to uninitialized
-  memory.
+- `no_mangle` needs `unsafe(..)` in
+  [the 2024 edition](https://doc.rust-lang.org/edition-guide/rust-2024/unsafe-attributes.html):
+  two exported functions with the same name are UB at link time, and the
+  `SAFETY:` comment says why this one is unique.
+- Why `MaybeUninit`: C's `out` usually points at an uninitialized local, so a
+  `&mut Stats` would be a reference to uninitialized memory.
+  [Implementing APIs Using `MaybeUninit`](../../day2-morning/04-initialization/11-implementing-apis-using-maybeuninit.md)
+  avoided exactly that.
 
 </details>

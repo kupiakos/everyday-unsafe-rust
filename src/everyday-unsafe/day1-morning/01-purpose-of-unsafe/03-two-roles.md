@@ -8,7 +8,7 @@ minutes: 4
 - `unsafe {}`, `unsafe impl`: provide one. Show you can give what they require.
 - `/// # Safety` requests. `// SAFETY:` responds.
 
-```rust
+```rust,editable
 /// # Safety
 ///
 /// The caller must ensure that `i < v.len()`.
@@ -43,10 +43,12 @@ fn main() {
 - The same keyword does two opposite jobs. `unsafe fn` says "callers have
   homework". `unsafe {}` says "I did the homework".
 - `get_fast` does both: it asks its caller for `i < v.len()`, and uses that to
-  answer `get_unchecked`'s requirement.
+  answer
+  [`get_unchecked`'s requirement](https://doc.rust-lang.org/std/primitive.slice.html#method.get_unchecked).
 - Ask: who proves `2 < v.len()` here? (`main`, with the `if`.)
-- Next: the same split inside a trait, where `unsafe` can sit in three places.
-- `Zeroable` comes back later this morning, in "Soundness Assigns
-  Responsibility".
+- Next: [`unsafe` in a Trait](04-trait-positions.md), the same split inside a
+  trait, where `unsafe` can sit in three places.
+- `Zeroable` comes back in
+  [Traits Can Carry Promises](../08-soundness-assigns-responsibility/01-unsafe-trait.md).
 
 </details>

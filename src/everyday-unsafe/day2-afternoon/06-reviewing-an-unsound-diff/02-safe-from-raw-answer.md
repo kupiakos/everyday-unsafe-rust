@@ -8,7 +8,7 @@ minutes: 2
 - `drop` frees a pointer `Box` never allocated.
 - The bug is in `from_raw`. It must be `unsafe`.
 
-```rust
+```rust,editable
 use std::ptr;
 
 pub struct Buffer {
@@ -49,10 +49,13 @@ impl Drop for Buffer {
 
 - The `unsafe` block is in `drop`, but the bug is in `from_raw`. The
   precondition belongs where the pointer enters, in a `# Safety` section saying
-  where `ptr` must come from.
+  where `ptr` must come from:
+  [`Box`'s memory layout](https://doc.rust-lang.org/std/boxed/index.html#memory-layout)
+  is what makes a `Box::into_raw` pointer safe to hand back.
 - Not a fix: a doc comment saying "only pass pointers from `Box`". Safe
   functions can't have preconditions.
-- Not a fix: checking `ptr.is_null()`. Non-null is one item on the list, not the
-  whole list.
+- Not a fix: checking `ptr.is_null()`. Non-null is one item on
+  [`Box::from_raw`'s list](https://doc.rust-lang.org/std/boxed/struct.Box.html#method.from_raw),
+  not the whole list.
 
 </details>

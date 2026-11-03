@@ -47,7 +47,8 @@ fn main() {
   or use `splice`.
 
 - with the fix, a panic in `f` leaks every element. Leaking is safe; Day 2's
-  Panics, Leaks, and Drop section shows a guard that drops them instead.
+  [Fix: A Guard](../../../../day2-morning/05-panics-leaks-and-drop-guarantees/05-guard.md)
+  shows a guard that drops them instead.
 - Miri reports the double drop in the original, and the leak in the fix. It
   doesn't report the early `set_len` when nothing panics. The contract still
   says it's wrong.
@@ -55,8 +56,9 @@ fn main() {
   `reserve` ("capacity overflow") before any `unsafe` runs. A panic is not UB.
 - The false comment: "Slots `0..n` are filled below." It cites a later write as
   evidence. With `n > len`, some of the new elements `len..len + n` are
-  uninitialized at the call: the `read()` buffer bug again, even if nothing
-  panics.
+  uninitialized at the call: the `read()` buffer bug from
+  [Broken at `set_len`](../../../02-reading-a-safety-section/03-the-bullet-you-broke.md)
+  again, even if nothing panics.
 - With `n <= len`, `set_len`'s bullets hold, but slots `0..n` are copies of
   elements that also live further along. A panic exposes it: with
   `["a", "b", "c"]` and `n = 1`, the slots are `[a, a, b, c]` when `f` panics,

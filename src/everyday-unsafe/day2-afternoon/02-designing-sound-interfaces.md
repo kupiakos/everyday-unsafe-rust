@@ -14,9 +14,10 @@ minutes: 1
 - **Goal:** move from what must hold to where the proof goes: design the wrapper
   so every caller is forced to use it correctly.
 
-- This morning's rules said what must hold. This segment is about where the
-  proof goes.
-- The C library story continues through Pinning and FFI after this.
+- [The Rules](../day2-morning/02-the-rules.md) said what must hold. This segment
+  is about where the proof goes.
+- The C library story continues through [Pinning](04-pinning.md) and
+  [FFI](05-ffi.md) after this.
 - Ask the first question and leave it open. The answer is "only if the type
   makes them".
 

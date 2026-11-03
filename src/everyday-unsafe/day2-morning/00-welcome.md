@@ -24,11 +24,13 @@ Yesterday: contracts. Today: the rules behind "valid". By lunch, you can:
   a `SAFETY:` comment: validity, initialization, panics, library rules,
   pointers, references, `Send`/`Sync`, and lifetimes.
 
-- Each rule today runs the core loop from Day 1: find the `# Safety` section,
-  answer it in a `SAFETY:` comment, then wrap it so the next caller doesn't have
-  to.
-- Ask: "Yesterday, what did 'valid pointer' mean?" Collect answers. Pointers in
-  Full turns them into a checklist mid-morning.
+- Each rule today runs
+  [the core loop from Day 1](../day1-afternoon/01-safety-documentation.md): find
+  the `# Safety` section, answer it in a `SAFETY:` comment, then wrap it so the
+  next caller doesn't have to.
+- Ask: "Yesterday, what did 'valid pointer' mean?" Collect answers.
+  [The Raw Pointer Checklist](07-the-raw-pointer-checklist.md) turns them into a
+  checklist mid-morning.
 - Every section has a "who's at fault?" question. Threads show up for the first
   time near the end.
 

@@ -24,11 +24,12 @@ minutes: 3
 
 - Use this table to review the afternoon: point at each row and ask which slide
   it came from.
-- "Valid" is a list here, as everywhere: non-null, aligned, initialized, live,
-  not aliased. Each pointer at the boundary gets every item checked.
+- "Valid" is a list here, as in
+  [The Checklist](../../day2-morning/07-the-raw-pointer-checklist/05-checklist.md):
+  non-null, aligned, initialized, live, not aliased. Each pointer at the
+  boundary gets every item checked.
 - Every row should end up in a `# Safety` section or a `SAFETY:` comment. If the
   C docs don't answer a row, that's a question for the library's owners, not a
   guess.
-- If the course adopts Review Triage, this table is its FFI checklist.
 
 </details>

@@ -9,7 +9,7 @@ minutes: 3
 - Nothing updates the stored address.
 - It now points at the old location.
 
-```rust
+```rust,editable
 struct SelfRef {
     data: [u8; 4],
     // Points into `data`. C++ would fix this up in a move constructor.
@@ -33,8 +33,8 @@ fn main() {
 - Run it. In a debug build the two addresses differ: `b.ptr` points at `a`'s old
   location, which the compiler may reuse for something else. An optimized build
   may happen to keep them equal. Don't count on either.
-- `SelfRef` is the smallest version of `Widget`: instead of a registry holding
-  `this`, the object holds a pointer to itself. Same failure.
+- `SelfRef` is the smallest version of [`Widget`](../04-pinning.md): instead of
+  a registry holding `this`, the object holds a pointer to itself. Same failure.
 - Dereferencing `b.ptr` now would be a use of a stale pointer. Nothing here is
   UB yet, because nobody reads through it.
 - Story: a C++ object registers `this` with an observer list. Rust moves it, and

@@ -4,12 +4,14 @@ minutes: 3
 
 # How Big Should an `unsafe` Block Be?
 
-- Last slide: the proof rests on `*b -= 32`, a safe line.
-- Narrow: just the operation (previous slide).
+- [The Proof That Spans Two Statements](04-proof-spans-statements.md): the proof
+  rests on `*b -= 32`, a safe line.
+- Narrow: just the operation, as in
+  [The Proof That Spans Two Statements](04-proof-spans-statements.md).
 - Wide: everything the proof depends on.
 - Both schools exist. The proof is what matters.
 
-```rust
+```rust,editable
 /// Uppercases the ASCII letters in `s`, in place.
 pub fn make_ascii_upper(s: &mut str) {
     // SAFETY: Only turns ASCII bytes into ASCII bytes, so `s` is still valid

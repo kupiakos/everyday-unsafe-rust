@@ -27,10 +27,10 @@ The metaphor table:
   check on every caller, then the metaphor: safe is an outlet, `unsafe` is
   labeled wiring, unsound is a wrong label.
 
-- Answer to the last slide's question: the reviewer is unhappy because the label
-  is wrong. The compiler checks every caller of a safe `fn` against its
-  signature, and `read_and_double`'s signature switched that check off.
-  Tomorrow's caller gets no warning.
+- Answer to the question on [Green Tests, Unhappy Reviewer](04-green-tests.md):
+  the reviewer is unhappy because the label is wrong. The compiler checks every
+  caller of a safe `fn` against its signature, and `read_and_double`'s signature
+  switched that check off. Tomorrow's caller gets no warning.
 - The real version: `actix-service`, under actix-web, 2020
   ([RUSTSEC-2020-0046](https://rustsec.org/advisories/RUSTSEC-2020-0046.html)).
   Its internal `Cell<T>` wrapped an `Rc<UnsafeCell<T>>`, was `Clone`, and handed
@@ -38,12 +38,14 @@ The metaphor table:
   to the same value, which Rust's rules forbid. Reviewers found it by reading
   the interface, not from a crash
   ([actix-net#160](https://github.com/actix/actix-net/issues/160)). Aliasing
-  rules themselves come on Day 2.
+  rules themselves come in
+  [Aliasing](../../day2-morning/08-from-raw-pointer-to-reference/05-aliasing.md).
 - Anyone can plug into an outlet. Behind it is wiring that only an electrician
   touches, and the electrician trusts its labels.
 - `push` is an outlet with wiring inside. `set_len` is labeled wiring.
   `read_and_double` is an outlet with swapped wires.
-- Skip the data race row for now: threads come on Day 2.
+- Skip the data race row for now: threads come in
+  [`Send`, `Sync`, and Data Races](../../day2-morning/09-send-sync-and-data-races.md).
 - This slide is a cut candidate if time is short.
 
 </details>

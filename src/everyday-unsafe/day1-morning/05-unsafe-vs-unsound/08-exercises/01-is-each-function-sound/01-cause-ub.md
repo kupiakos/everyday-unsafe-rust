@@ -4,7 +4,8 @@ minutes: 5
 
 # Part 2: Cause UB from `main`
 
-- Part 1's answer: `midpoint` and `pair_at` are unsound.
+- [Part 1](../01-is-each-function-sound.md)'s answer: `midpoint` and `pair_at`
+  are unsound.
 - For each one, write a call in `main` that causes UB.
 - Follow every `# Safety` section you call.
 
@@ -54,9 +55,10 @@ fn main() {
 - **Goal:** proving a function unsound by writing a caller that follows every
   `# Safety` section and still causes UB.
 
-- Answer to the last slide: `midpoint` is safe and unsound, `wrapping_get` safe
-  and sound, `pair_at` `unsafe` and unsound, `last_unchecked` `unsafe` and
-  sound.
+- Answer to
+  [Exercise: Is Each Function Sound?](../01-is-each-function-sound.md):
+  `midpoint` is safe and unsound, `wrapping_get` safe and sound, `pair_at`
+  `unsafe` and unsound, `last_unchecked` `unsafe` and sound.
 - Hints:
   - Bigger hint: `midpoint`'s `SAFETY:` comment is false for an empty slice.
   - Hint for `pair_at`: how many indices does the body read? How many does the

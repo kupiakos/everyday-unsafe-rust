@@ -38,7 +38,7 @@ impl Tokens {
 
 fn main() {
     let mut t = Tokens::new("let x = 1;".to_string());
-    t.push_line(&" y".repeat(1000)); // Reallocates `text`: still fine.
+    t.push_line(&" y".repeat(100)); // Reallocates `text`: still fine.
     assert_eq!(t.tokens().take(3).collect::<Vec<_>>(), ["let", "x", "="]);
 }
 ```

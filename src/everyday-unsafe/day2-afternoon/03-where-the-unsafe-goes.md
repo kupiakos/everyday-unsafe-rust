@@ -8,7 +8,7 @@ minutes: 5
 - Every dereference needs an `unsafe` block.
 - Seven identical `SAFETY:` comments: crying wolf.
 
-```rust
+```rust,editable
 use std::ffi::{CStr, c_char, c_void};
 
 #[repr(C)]
@@ -48,7 +48,9 @@ pub unsafe extern "C" fn on_record(_user: *mut c_void, rec: *const lp_record) {
   doesn't stand out.
 - Ask: "Where is the precondition actually stated?" Once, in the C library's
   docs for the callback. The goal is to discharge it once, in one place.
-- `lp_record` now has its real fields, so it needs `#[repr(C)]` (the ABI
-  section's struct layout slide).
+- `lp_record` now has its real fields, so it needs `#[repr(C)]`
+  ([Struct Layout](01-abi/03-struct-layout.md)).
+- Each `SAFETY:` comment answers
+  [`CStr::from_ptr`'s requirements](https://doc.rust-lang.org/std/ffi/struct.CStr.html#method.from_ptr).
 
 </details>

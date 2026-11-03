@@ -4,12 +4,14 @@ minutes: 3
 
 # Make Preconditions Checkable
 
-- Recall LZO: no caller could check `dst`'s size.
+- In
+  [Writing the Contract Down](../../day1-morning/04-contracts-between-engineers/08-writing-it-down.md),
+  no caller could check `dst`'s size.
 - Take `dst: &mut [u8]`: the slice knows its length.
 - Call the C function that checks it.
 - The precondition is gone, so the function is safe.
 
-```rust
+```rust,editable
 use std::ffi::{c_int, c_void};
 use std::ptr;
 
@@ -51,9 +53,13 @@ pub fn decompress(src: &[u8], dst: &mut [u8]) -> Option<usize> {
 - **Point:** if no caller can check a precondition, change the API so the types
   carry it (a slice knows its length), and the precondition goes away.
 
-- Back to Day 1's contract page: `decompress_unchecked` required `dst` to be big
-  enough, and no caller could check that from the arguments. Teams stored the
-  decompressed size next to the data and hoped.
+- In
+  [Writing the Contract Down](../../day1-morning/04-contracts-between-engineers/08-writing-it-down.md),
+  `decompress_unchecked` required `dst` to be big enough, and no caller could
+  check that from the arguments. Teams stored the decompressed size next to the
+  data and hoped.
+  [A Precondition Nobody Can Check](../../day1-afternoon/04-writing-a-safety-section/07-nobody-can-check.md)
+  sketched this fix.
 - Here the slice carries its length, and `lzo1x_decompress_safe` checks it, so
   there's nothing left for the caller to prove.
 - Ask: "Is there still a reason to keep `decompress_unchecked`?" Only if

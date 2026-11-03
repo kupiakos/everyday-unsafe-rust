@@ -9,7 +9,7 @@ minutes: 4
 - Soundness can depend on the platform.
 - And on the compiler version.
 
-```rust
+```rust,editable
 pub struct Image {
     w: u16,
     h: u16,
@@ -43,9 +43,10 @@ impl Image {
 - Debug builds check for overflow and panic instead, so the tests may never see
   it.
 - Code that's sound only in some contexts is _contextually sound_. That includes
-  code that relies on today's compiler, such as an unsettled rule or the current
-  layout of a `repr(Rust)` type.
-- Ask: how would you make the 32-bit build safe? Hold the answers for the next
-  slide.
+  code that relies on today's compiler, such as an
+  [unsettled rule](../../day1-morning/03-undefined-behavior/08-unsettled.md) or
+  the current layout of a `repr(Rust)` type.
+- Ask: how would you make the 32-bit build safe? Hold the answers for
+  [Compile Error > Panic > UB](06-ladder.md).
 
 </details>

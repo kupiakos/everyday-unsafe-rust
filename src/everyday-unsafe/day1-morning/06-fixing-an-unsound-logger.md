@@ -17,7 +17,7 @@ Handler* handler = rust_handler_new(&logger);
 
 ### `handler.rs`
 
-```rust
+```rust,editable
 #[derive(Default)]
 pub struct Logger {
     pub lines: Vec<String>,
@@ -45,7 +45,7 @@ impl Handler {
 
 ### `main.rs`
 
-```rust,no_run
+```rust,no_run,editable
 # mod handler {
 #     #[derive(Default)]
 #     pub struct Logger {
@@ -96,7 +96,8 @@ fn main() {
 - The fix? Two good ones.
 
 - Why a raw pointer? C++ owns the `Logger`, and a C++ caller can only hand us a
-  `Logger*`. How it crosses the boundary is Day 2 (FFI).
+  `Logger*`. How it crosses the boundary is Day 2:
+  [FFI](../day2-afternoon/05-ffi.md).
 - The C++ server isn't the only caller. A teammate writes a Rust `main`.
 - Usual wrong answer: `main`, because it passed null.
 - No threads here: the handler is a plain value, not a global.

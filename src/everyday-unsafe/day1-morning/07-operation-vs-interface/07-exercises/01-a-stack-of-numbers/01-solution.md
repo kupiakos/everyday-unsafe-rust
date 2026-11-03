@@ -69,11 +69,19 @@ fn main() {}
   - Usual wrong answer: "`push` writes `len`, so it needs `unsafe`". The
     indexing checks first.
   - Usual wrong answer: "`replace_storage` doesn't touch `len`". It changes the
-    other side of the invariant, like the renovation slide.
+    other side of the invariant, like `push_byte` in
+    [The Renovation](../../../05-unsafe-vs-unsound/06-renovation.md).
   - What isn't a fix: making `as_slice` an `unsafe fn`. Every reader would have
     to prove an invariant they can't see, and the writers are the bug. Also not
     a fix: a doc comment on `set_len`.
-  - `std` agrees: `Vec::set_len` and `Vec::from_raw_parts` are `unsafe`;
-    `truncate` and `clear` are safe.
+  - `std` agrees:
+    [`Vec::set_len`](https://doc.rust-lang.org/std/vec/struct.Vec.html#method.set_len)
+    and
+    [`Vec::from_raw_parts`](https://doc.rust-lang.org/std/vec/struct.Vec.html#method.from_raw_parts)
+    are `unsafe`;
+    [`truncate`](https://doc.rust-lang.org/std/vec/struct.Vec.html#method.truncate)
+    and
+    [`clear`](https://doc.rust-lang.org/std/vec/struct.Vec.html#method.clear)
+    are safe.
 
 </details>

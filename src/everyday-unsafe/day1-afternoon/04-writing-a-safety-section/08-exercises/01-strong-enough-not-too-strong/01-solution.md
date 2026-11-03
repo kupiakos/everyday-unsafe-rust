@@ -37,9 +37,10 @@ fn main() {
 - **Answer:** one bullet, `s.is_char_boundary(mid)`. X is too weak (`"é"`, `1`),
   and Y is too strong.
 
-- compare `str::get_unchecked` in `std`. Its `# Safety` section says the same
-  thing in three bullets: start before end, in bounds, and on character
-  boundaries.
+- compare
+  [`str::get_unchecked`](https://doc.rust-lang.org/std/primitive.str.html#method.get_unchecked)
+  in `std`. Its `# Safety` section says the same thing in three bullets: start
+  before end, in bounds, and on character boundaries.
 - X is too weak: `split_unchecked("é", 1)` meets it, and cuts `é` in half.
   Neither half is UTF-8.
 - Y is too strong: sound, but it rejects `"é"` and `mid == s.len()`, which work
@@ -48,7 +49,7 @@ fn main() {
   "in bounds" too.
 - Usual wrong answer: `mid < s.len()`. Off by one: `mid == s.len()` gives an
   empty tail, which is fine.
-- Recall "From Vague to Precise": loosening Y to the right contract later is
-  fine. Tightening X later silently breaks callers.
+- Loosening Y to the right contract later is fine. Tightening X later silently
+  breaks callers.
 
 </details>

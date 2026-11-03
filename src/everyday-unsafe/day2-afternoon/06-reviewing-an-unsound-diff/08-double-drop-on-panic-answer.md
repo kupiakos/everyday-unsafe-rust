@@ -8,7 +8,7 @@ minutes: 2
 - Unwinding drops `item`. Then the `Vec` drops slot `i` again.
 - Fix: length 0 during the loop, so a panic leaks instead.
 
-```rust
+```rust,editable
 /// Replaces every element `x` of `v` with `f(x)`, without reallocating.
 pub fn map_in_place<T>(v: &mut Vec<T>, mut f: impl FnMut(T) -> T) {
     let len = v.len();
@@ -34,8 +34,11 @@ pub fn map_in_place<T>(v: &mut Vec<T>, mut f: impl FnMut(T) -> T) {
   set the length to 0 during the loop, so a panic leaks instead.
 
 - The fix: `set_len(0)` before the loop and restore the length after it. A panic
-  leaks the elements, which is safe. Or a guard whose `Drop` drops the remaining
-  elements and sets the length.
+  leaks the elements, which is safe, as in
+  [Fix: Leak Instead](../../day2-morning/05-panics-leaks-and-drop-guarantees/04-leak-instead.md).
+  Or
+  [a guard](../../day2-morning/05-panics-leaks-and-drop-guarantees/05-guard.md)
+  whose `Drop` drops the remaining elements and sets the length.
 - Not a fix: "`f` must not panic" in a doc comment. `f` is safe code.
 
 </details>

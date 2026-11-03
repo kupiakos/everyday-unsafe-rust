@@ -9,7 +9,7 @@ The other option is that `handler.rs` declare its init function as `unsafe`. Add
 
 ### `handler.rs`
 
-```rust
+```rust,editable
 #[derive(Default)]
 pub struct Logger {
     pub lines: Vec<String>,
@@ -52,7 +52,7 @@ impl Handler {
 - If `main` gets its `unsafe` wrong it's the fault of `main`, not
   `Handler::new`.
 
-```rust
+```rust,editable
 # mod handler {
 #     #[derive(Default)]
 #     pub struct Logger {
@@ -105,11 +105,13 @@ fn main() {
   it: it's now a safety responsibility of the caller to ensure nothing else uses
   the logger during `handler.log`.
 - Best to stay safe and use references where needed.
-- In future slides we'll go over in more detail how one designs a sound
-  interface that uses `unsafe` internally.
+- In
+  [Designing Sound Interfaces](../../day2-afternoon/02-designing-sound-interfaces.md)
+  we'll go over in more detail how one designs a sound interface that uses
+  `unsafe` internally.
 
-- Why choose this over Fix 1? The C++ server logs too, between Rust calls. A
-  `&mut Logger` held the whole time would be a lie.
+- Why choose this over [Fix 1](02-fix-1-stay-safe.md)? The C++ server logs too,
+  between Rust calls. A `&mut Logger` held the whole time would be a lie.
 - The second requirement allows that: C++ may use the logger, just not while a
   `Handler` method runs.
 - `log` stays safe. Its `SAFETY:` comment points back to `new`'s contract.

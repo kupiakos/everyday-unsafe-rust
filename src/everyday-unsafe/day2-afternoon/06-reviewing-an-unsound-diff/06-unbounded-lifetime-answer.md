@@ -8,7 +8,7 @@ minutes: 2
 - And `from_ptr` is safe, so callers needn't read the doc comment.
 - Best fix: borrow from whatever owns the memory.
 
-```rust,no_run
+```rust,no_run,editable
 # /// Caller must pass a pointer valid for reads of `len` elements.
 # pub fn from_ptr<T>(ptr: *const T, len: usize) -> &'static [T] {
 #     // SAFETY: The caller passes a valid pointer, as documented above.
@@ -36,8 +36,10 @@ fn main() {
 - Not a fix: `fn from_ptr<'a, T>(..) -> &'a [T]`. Still safe, and now the caller
   picks `'a`, which can still be `'static`.
 - Sound but fragile: `unsafe fn` with that signature, like
-  `slice::from_raw_parts`. Inference may pick a lifetime that's far too long.
+  [`slice::from_raw_parts`](https://doc.rust-lang.org/std/slice/fn.from_raw_parts.html#caveat).
+  Inference may pick a lifetime that's far too long.
 - Best: borrow from whatever owns the memory, like
-  `Record::host(&self) -> &'a CStr`.
+  `Record::host(&self) -> &'a CStr` in
+  [One `unsafe` Constructor](../03-where-the-unsafe-goes/01-one-unsafe-constructor.md).
 
 </details>

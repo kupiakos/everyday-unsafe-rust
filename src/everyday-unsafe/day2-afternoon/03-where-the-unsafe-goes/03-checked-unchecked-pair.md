@@ -7,9 +7,10 @@ minutes: 3
 - Safe `new` checks; `unsafe new_unchecked` doesn't.
 - `# Safety` requires what `new` checks.
 - `debug_assert!` catches mistakes in tests.
-- Same as `from_utf8` / `from_utf8_unchecked`.
+- Same as [`from_utf8`](https://doc.rust-lang.org/std/str/fn.from_utf8.html) /
+  [`from_utf8_unchecked`](https://doc.rust-lang.org/std/str/fn.from_utf8_unchecked.html#safety).
 
-```rust
+```rust,editable
 pub struct Ascii<'a>(
     // Safety invariant: every byte is ASCII.
     &'a [u8],
@@ -48,8 +49,8 @@ impl<'a> Ascii<'a> {
   That makes it easy to review: compare the two.
 - `debug_assert!` costs nothing in release builds and turns a caller's broken
   promise into a test failure. It's not a fix: release builds still have UB.
-- Ask: "Could `Record` have a checked/unchecked pair?" Only partly. It could
-  check for null, but not for NUL termination or lifetime. Not every
-  precondition can be checked.
+- Ask: "Could [`Record`](01-one-unsafe-constructor.md) have a checked/unchecked
+  pair?" Only partly. It could check for null, but not for NUL termination or
+  lifetime. Not every precondition can be checked.
 
 </details>

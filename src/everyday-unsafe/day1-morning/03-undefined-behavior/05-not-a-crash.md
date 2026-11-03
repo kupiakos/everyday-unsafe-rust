@@ -20,9 +20,9 @@ minutes: 2
   `false`, print `true`, or crash, then passing tests prove nothing, since tests
   mostly run unoptimized.
 
-- Answer to the last slide's question: no, `false` isn't fine. Reading `session`
-  after `drop` is a use after free: UB. The program may print `false`, print
-  `true`, or do something else entirely.
+- Answer to the question on [What Can This Print?](04-not-a-crash.md): no,
+  `false` isn't fine. Reading `session` after `drop` is a use after free: UB.
+  The program may print `false`, print `true`, or do something else entirely.
 - `true` here is the exploit: the attacker's byte now decides who's an admin.
 - `cargo test` builds without optimizations by default, so tests mostly see the
   unoptimized program. The optimizer's assumptions show up in release.

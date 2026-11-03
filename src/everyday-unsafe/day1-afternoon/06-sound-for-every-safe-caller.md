@@ -8,7 +8,7 @@ minutes: 5
 - Your job: cause UB from safe code.
 - No `unsafe` allowed at the call site.
 
-```rust
+```rust,editable
 /// Returns `v[i]` and `v[i + 1]`.
 pub fn pair<T>(v: &[T], i: usize) -> (&T, &T) {
     assert!(i + 1 < v.len());
@@ -29,6 +29,7 @@ pub fn pair<T>(v: &[T], i: usize) -> (&T, &T) {
 - Give the class two minutes. Ask: "What arguments would you try?"
 - Expect: an empty slice, `i = 0`, `i = v.len()`, `i = usize::MAX`. Try each
   against the `assert!` and the `SAFETY:` comment.
-- Don't reveal the answer yet. The next slide does.
+- Don't reveal the answer yet.
+  [Weird Values](06-sound-for-every-safe-caller/01-weird-values.md) does.
 
 </details>

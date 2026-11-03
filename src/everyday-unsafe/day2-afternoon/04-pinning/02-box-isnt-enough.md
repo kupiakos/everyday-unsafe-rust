@@ -8,7 +8,7 @@ minutes: 3
 - But a `&mut T` can: `mem::swap`, `mem::replace`.
 - `Box<T>` hands out `&mut T` to anyone.
 
-```rust
+```rust,editable
 struct SelfRef {
     data: [u8; 4],
     ptr: *const u8, // Points into `data`.

@@ -7,7 +7,7 @@ minutes: 3
 - Read one bullet at a time.
 - For each: who makes it true, and how?
 
-```rust,ignore
+```rust,ignore,editable
 impl<T> Vec<T> {
     /// Forces the length of the vector to `new_len`.
     ///
@@ -26,9 +26,12 @@ impl<T> Vec<T> {
 - **Point:** `set_len`'s contract is two separate preconditions, room (capacity)
   and contents (initialized). Read each one and ask who makes it true.
 
-- These are the two bullets from the `std` docs, word for word.
-- The body is one field write, as in Operation vs Interface this morning. All of
-  the danger is in what other code does with `len` afterward.
+- These are the two bullets from the
+  [`std` docs](https://doc.rust-lang.org/std/vec/struct.Vec.html#method.set_len),
+  word for word.
+- The body is one field write, as in
+  [`set_len` Is Just a Field Write](../../day1-morning/07-operation-vs-interface/02-set-len.md).
+  All of the danger is in what other code does with `len` afterward.
 - Bullet 1 is about the buffer: there must be room.
 - Bullet 2 is about the contents: every newly counted element must already hold
   a real `T`. Ask: "Which bullet would a C programmer skip?" Usually the second.

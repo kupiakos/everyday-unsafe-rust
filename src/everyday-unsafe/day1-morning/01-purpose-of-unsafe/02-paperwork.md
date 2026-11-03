@@ -20,12 +20,12 @@ src/ffi.rs:17:    let n = unsafe { strlen(s.as_ptr()) };
 - **Point:** `unsafe` marks the only places a memory-safety bug can start, and
   each one is where a person has to show their work.
 
-- Story 1.1. Before a review, you search the crate and find three blocks. That's
-  where the compiler handed the proof to a person.
+- Before a review, you search the crate and find three blocks. That's where the
+  compiler handed the proof to a person.
 - `unsafe` is bureaucracy: it marks where paperwork is required. If you never
   use it, you can't write a memory-safety bug.
-- Careful: a block's proof can depend on other code in its module. The
-  "renovation" slide later shows that.
+- Careful: a block's proof can depend on other code in its module.
+  [The Renovation](../05-unsafe-vs-unsound/06-renovation.md) shows that.
 - `#![forbid(unsafe_code)]` turns "this crate has no `unsafe`" into a compile
   error if someone adds some.
 

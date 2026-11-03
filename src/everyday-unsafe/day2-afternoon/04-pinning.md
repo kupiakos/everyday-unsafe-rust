@@ -35,7 +35,8 @@ struct Widget {
   location is treated as uninitialized. Nothing gets a chance to update
   `Registry`.
 - Ask: "What happens if Rust code moves a `Widget`?" The registry still points
-  at the old address. The next slide shows it.
+  at the old address. [Registering `this`](04-pinning/01-registers-this.md)
+  shows it.
 - Teams that need C++ objects in Rust often work around this in ways that create
   debt. This hour is the alternative: `Pin`.
 

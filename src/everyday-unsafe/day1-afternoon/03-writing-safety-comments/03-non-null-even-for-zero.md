@@ -8,7 +8,7 @@ minutes: 2
 - `(NULL, 0)` breaks it.
 - Answering each bullet finds the bug.
 
-```rust
+```rust,editable
 use std::slice;
 
 /// # Safety
@@ -36,13 +36,16 @@ pub unsafe fn items<'a>(ptr: *const u16, len: usize) -> &'a [u16] {
   then the takeaway: answering each bullet on its own line is what finds the
   bug.
 
-- Answer to the last slide's question: `(NULL, 0)` breaks bullet 1.
-- The docs say non-null and aligned even for length 0.
+- Answer to the question on [The Empty Array from C](02-empty-array-from-c.md):
+  `(NULL, 0)` breaks bullet 1.
+- [The docs](https://doc.rust-lang.org/std/slice/fn.from_raw_parts.html#safety)
+  say non-null and aligned even for length 0.
 - Why: a `&[T]` is never null, and `Option<&[T]>` uses null to mean `None`.
 - The fix: `as_slice` with one change. The C library may return null when there
   are no items, so check for it.
 - Writing "Non-null: ..." on its own line is what makes you ask the question. A
   one-line "the pointer is valid" would have hidden it.
-- `NonNull::dangling()` with length 0 is the other fix the docs suggest.
+- [`NonNull::dangling()`](https://doc.rust-lang.org/std/ptr/struct.NonNull.html#method.dangling)
+  with length 0 is the other fix the docs suggest.
 
 </details>

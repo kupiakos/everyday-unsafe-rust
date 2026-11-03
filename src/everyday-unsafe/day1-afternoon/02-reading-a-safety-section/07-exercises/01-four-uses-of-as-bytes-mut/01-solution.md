@@ -56,7 +56,9 @@ fn main() {
   has a clock.
 - 4 breaks when `n` cuts a character: `mask_prefix("é", 1)`.
 - Usual wrong answer: "Only some inputs break it, so it's fine." Each of these
-  is a safe `fn`, so every input counts. Safe Everywhere comes back to this.
+  is a safe `fn`, so every input counts.
+  [Sound for Every Safe Caller](../../../06-sound-for-every-safe-caller.md)
+  comes back to this.
 - Not a fix: `str::from_utf8(bytes).unwrap()` after the loop. The panic ends the
   borrow while the bytes are still invalid, and whoever catches it sees a broken
   `str`.

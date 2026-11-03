@@ -44,6 +44,7 @@ pub unsafe fn split_unchecked(s: &str, mid: usize) -> (&str, &str) {
   - Hint for "find one": try a string with a non-ASCII character.
   - If they write `mid < s.len()`: what does `mid == s.len()` give?
   - Ask after: which is easier to change later, a contract that's too strong, or
-    one that's too weak? Recall "From Vague to Precise".
+    one that's too weak? Loosening a too-strong contract later is fine;
+    tightening a too-weak one silently breaks callers.
 
 </details>

@@ -20,14 +20,16 @@ minutes: 3
 - **Point:** the UB rules live in documents and some aren't settled yet; this
   course stays on the settled side, and says when to ask an expert.
 
-- The documents: the Rust Reference's "Behavior considered undefined" list, and
-  the `# Safety` sections in the standard library docs.
+- The documents: the Rust Reference's
+  ["Behavior considered undefined"](https://doc.rust-lang.org/reference/behavior-considered-undefined.html)
+  list, and the `# Safety` sections in the standard library docs.
 - The Reference says its list isn't exhaustive. Some rules, like exactly how
   `&mut` aliasing works, are still being decided. Memory models for them exist,
   but they aren't final.
 - Unsettled means "may become UB". Code that relies on it may be fine with
   today's compiler and break with the next one.
-- So stay on the settled side: "use `MaybeUninit` everywhere" avoids the third
-  row entirely.
+- So stay on the settled side: "use
+  [`MaybeUninit`](https://doc.rust-lang.org/std/mem/union.MaybeUninit.html#initialization-invariant)
+  everywhere" avoids the third row entirely.
 
 </details>

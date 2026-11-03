@@ -7,7 +7,7 @@ minutes: 3
 - Safe traits can be implemented wrong.
 - Unsafe code can't trust them for memory safety.
 
-```rust,no_run
+```rust,no_run,editable
 /// UNSOUND: trusts a caller-provided `ExactSizeIterator::len`.
 pub fn collect_bad<T>(iter: impl ExactSizeIterator<Item = T>) -> Vec<T> {
     let n = iter.len();
@@ -45,17 +45,23 @@ fn main() {
 
 <details>
 
-- **Point:** unsafe code can't trust a safe trait like `ExactSizeIterator` for
-  memory safety. A lying `len()` is a logic bug in the impl, but the UB, and the
-  fault, is in `collect_bad`.
+- **Point:** unsafe code can't trust a safe trait like
+  [`ExactSizeIterator`](https://doc.rust-lang.org/std/iter/trait.ExactSizeIterator.html)
+  for memory safety. A lying `len()` is a logic bug in the impl, but the UB, and
+  the fault, is in `collect_bad`.
 
-- This is the morning's `Eq` that lies, with an iterator. `ExactSizeIterator` is
-  a safe trait, so a wrong `len()` is a logic bug in `Liar`, not UB.
+- This is
+  [`Eq` Can Lie](../../day1-morning/08-soundness-assigns-responsibility/02-eq-can-lie.md),
+  with an iterator. `ExactSizeIterator` is a safe trait, and
+  [its docs](https://doc.rust-lang.org/std/iter/trait.ExactSizeIterator.html)
+  say unsafe code must not rely on it, so a wrong `len()` is a logic bug in
+  `Liar`, not UB.
 - The UB happens in `collect_bad`, so the fault is in `collect_bad`.
 - `Liar` claims 1 item and yields 10. `collect_bad` only asked for room for 1,
   so it writes past the end of its buffer.
 - Fixes: use `Vec::push` (it checks capacity), or count the items actually
   written and stop at `n`. A trait that unsafe code may trust has to be an
-  `unsafe trait`, like `Size32` this morning.
+  `unsafe trait`, like
+  [`Size32`](../../day1-morning/08-soundness-assigns-responsibility/03-size32.md).
 
 </details>

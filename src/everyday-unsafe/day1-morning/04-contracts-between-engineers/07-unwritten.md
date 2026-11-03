@@ -24,14 +24,15 @@ lzo1x_decompress(b->data, b->compressed_len, dst, &dst_len, NULL);
 
 - **Question:** students work out what breaks the unwritten "store the size next
   to the data" contract: a new format without the size, or a size from an
-  untrusted file. The answer is on the next slide.
+  untrusted file. The answer is on
+  [Writing the Contract Down](08-writing-it-down.md).
 
 - The header never says "store the size next to the data". Teams found that out,
   and passed it on by word of mouth.
 - Ask: what goes wrong? A new teammate writes a new file format without the
   size. Or `decompressed_len` comes from an untrusted file.
 - Either way, the result is a heap overflow, with no warning from the compiler.
-  The next slide opens with that.
+  [Writing the Contract Down](08-writing-it-down.md) opens with that.
 - A contract existed. It just wasn't written anywhere a reviewer could check.
 
 </details>

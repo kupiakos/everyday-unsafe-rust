@@ -13,6 +13,7 @@ minutes: 1
 - **Goal:** turning vague `SAFETY:` comments into ones that name the requirement
   and point at evidence, and fixing the code when no true comment exists.
 
-- Do ""SAFETY: Trust Me"" first. Short on time: skip "The Inherited Crate".
+- Do ["SAFETY: Trust Me"](07-exercises/01-safety-trust-me.md) first. Short on
+  time: skip [The Inherited Crate](07-exercises/02-the-inherited-crate.md).
 
 </details>

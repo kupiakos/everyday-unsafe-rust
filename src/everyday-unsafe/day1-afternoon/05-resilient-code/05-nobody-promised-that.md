@@ -8,7 +8,7 @@ minutes: 2
 - The `SAFETY:` comment relied on today's behavior, not the interface.
 - Fix: check, or get the promise written down.
 
-```rust
+```rust,editable
 # mod config {
 #     pub fn names() -> Vec<String> {
 #         vec![String::from("default")]
@@ -20,7 +20,7 @@ pub fn primary_name() -> Option<String> {
 }
 ```
 
-```rust
+```rust,editable
 mod config {
     /// Returns the configured names.
     ///
@@ -47,13 +47,13 @@ pub fn primary_name() -> String {
   behavior, not a documented promise, then check it, or get the guarantee
   written into the docs.
 
-- Answer to the last slide's question.
+- Answer to the question on [A Minor Version Bump?](04-minor-version-bump.md).
 - A patch release is just another future edit, like a new target. The `SAFETY:`
   comment was true on the day it was written.
 - If the check matters for performance, ask `config` to document the guarantee.
-  Dmytro's convention for this is a `# Safety-usable invariant` section on the
-  safe function. Then a breaking change to it is a semver break, and the
-  `SAFETY:` comment can cite it. The second block shows both halves.
+  One convention for this is a `# Safety-usable invariant` section on the safe
+  function. Then a breaking change to it is a semver break, and the `SAFETY:`
+  comment can cite it. The second block shows both halves.
 - A proof that reads another function's body is fragile for the same reason: the
   body can change without its docs changing.
 

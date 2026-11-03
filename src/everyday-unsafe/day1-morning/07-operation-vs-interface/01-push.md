@@ -8,7 +8,7 @@ minutes: 3
 - Its `unsafe` block trusts the invariants.
 - Can a safe caller break them?
 
-```rust
+```rust,editable
 # use std::ptr::NonNull;
 # pub struct Vec<T> {
 #     ptr: NonNull<T>,
@@ -34,13 +34,16 @@ impl<T> Vec<T> {
 <details>
 
 - **Question:** students work out whether any safe caller can break `push` (no:
-  the fields are private, and `grow` keeps `len < cap`). The answer is on the
-  next slide.
+  the fields are private, and `grow` keeps `len < cap`). The answer is on
+  [`set_len` Is Just a Field Write](02-set-len.md).
 
-- The same `push` as in "Why UB exists", now with the struct behind it.
+- The same `push` as in
+  [Why UB Exists: `Vec::push`](../03-undefined-behavior/06-vec-push.md), now
+  with the struct behind it.
 - Ask: what could a caller pass to break `push`? Expected answer: nothing. Any
   `T`, any number of times. The caller can't touch `ptr`, `cap`, or `len`, and
-  `grow` keeps `len < cap`. The next slide opens with that.
+  `grow` keeps `len < cap`. [`set_len` Is Just a Field Write](02-set-len.md)
+  opens with that.
 - After the write, slot `len` is initialized, so `len += 1` keeps the `len`
   invariant.
 - This is the first shape of sound code with `unsafe` in it: a safe interface,

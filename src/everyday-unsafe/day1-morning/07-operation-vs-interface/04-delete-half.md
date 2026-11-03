@@ -9,7 +9,7 @@ minutes: 3
 - `truncate(100)` now grows `len`.
 - `get` and `Drop` trust `len`: unsound.
 
-```rust
+```rust,editable
 # use std::ptr::NonNull;
 # pub struct Vec<T> {
 #     ptr: NonNull<T>,
@@ -36,14 +36,18 @@ impl<T> Vec<T> {
   no caller can break `len`, then delete that check and it's an unsound safe
   `set_len`.
 
-- Answer to the last slide's question: the operation is the same field write.
-  The interface differs: `truncate` only shrinks, so no caller can break `len`.
-  Delete that check, and it's a safe `set_len`.
+- Answer to the question on [`truncate` Writes the Same Field](03-truncate.md):
+  the operation is the same field write. The interface differs: `truncate` only
+  shrinks, so no caller can break `len`. Delete that check, and it's a safe
+  `set_len`.
 - Nothing in `truncate` itself goes wrong: the loop is empty when `len` grows.
   The UB happens later, in `get`, indexing, or `Drop`, which all trust `len`.
-- This `truncate` is now the safe `set_len` from two slides ago.
+- This `truncate` is now the safe `set_len` from
+  [`set_len` Is Just a Field Write](02-set-len.md).
 - Ask: what if we deleted the drop loop instead? Then removed values are leaked:
-  never dropped. That's a bug, but leaking is safe. Day 2 comes back to this.
+  never dropped. That's a bug, but leaking is safe.
+  [Leaking Is Safe](../../day2-morning/05-panics-leaks-and-drop-guarantees/01-leaking-is-safe.md)
+  comes back to this.
 - Other code trusts `len`, so every write to `len` is part of the proof.
 
 </details>

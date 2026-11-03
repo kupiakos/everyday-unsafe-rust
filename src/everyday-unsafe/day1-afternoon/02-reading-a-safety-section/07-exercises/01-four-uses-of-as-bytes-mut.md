@@ -64,7 +64,8 @@ fn mask_prefix(s: &mut str, n: usize) {
   - Hint: try characters of each UTF-8 length: `a`, `é`, `€`, and `😀`. Which
     bytes does each function change?
   - Hint: tests in English or French only use 1- and 2-byte characters.
-  - If they say "invalid at any point is UB": reread the `# Safety` section.
+  - If they say "invalid at any point is UB": reread the
+    [`# Safety` section](https://doc.rust-lang.org/std/primitive.str.html#method.as_bytes_mut).
     _When_ must the bytes be valid UTF-8?
   - If they say "Only some inputs break it, so it's fine": who picks the input
     to a safe `fn`?

@@ -7,7 +7,7 @@ minutes: 3
 - "Valid" names no property.
 - List each property, and how long.
 
-```rust
+```rust,editable
 /// Version 1, vague:
 ///
 /// # Safety
@@ -45,7 +45,9 @@ pub unsafe fn sum_v2(ptr: *const u32, len: usize) -> u32 {
   ("for the duration of the call").
 - A good test: the callee's `SAFETY:` comment becomes "each requirement is a
   bullet in my `# Safety`".
-- Day 2 gives the full list that "valid" stands for. Today's list is enough for
-  `from_raw_parts`.
+- Day 2's
+  [The Raw Pointer Checklist](../../day2-morning/07-the-raw-pointer-checklist.md)
+  gives the full list that "valid" stands for. Today's list is enough for
+  [`from_raw_parts`](https://doc.rust-lang.org/std/slice/fn.from_raw_parts.html#safety).
 
 </details>

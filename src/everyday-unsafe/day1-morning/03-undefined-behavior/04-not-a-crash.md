@@ -8,7 +8,7 @@ minutes: 1
 - Something else is allocated in between.
 - You ran it, and it printed `false`. Is it fine?
 
-```rust
+```rust,editable
 struct Session {
     is_admin: bool,
 }
@@ -28,13 +28,14 @@ fn main() {
 <details>
 
 - **Question:** students work out that printing `false` doesn't make a use after
-  free fine: it's UB, so no output is promised. The answer is on the next slide.
+  free fine: it's UB, so no output is promised. The answer is on
+  [UB Isn't a Crash](05-not-a-crash.md).
 
 - Ask: what can this print? Then: you ran it, and it printed `false`. Is it
   fine?
 - Usual wrong answer: "it printed `false`, so it's fine", or "it'll crash".
 - Expected answer: no. It's a use after free, which is UB, so nothing about the
-  output is promised. The next slide has the outcomes.
+  output is promised. [UB Isn't a Crash](05-not-a-crash.md) has the outcomes.
 - Hint if needed: `_attacker` is the same size as a `Session`.
 
 </details>

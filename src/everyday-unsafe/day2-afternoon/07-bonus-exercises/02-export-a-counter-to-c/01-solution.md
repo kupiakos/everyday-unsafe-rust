@@ -75,8 +75,10 @@ fn main() {
   safe, and `counter_free` stays `unsafe`. NULL is a no-op, overflow wraps, and
   threads go in the docs.
 
-- NULL: `Box::from_raw(null)` is UB. Follow `free(NULL)` and check for it.
-  `Option<&mut Counter>` makes the compiler do the check.
+- NULL:
+  [`Box::from_raw(null)`](https://doc.rust-lang.org/std/boxed/struct.Box.html#method.from_raw)
+  is UB. Follow `free(NULL)` and check for it. `Option<&mut Counter>` makes the
+  compiler do the check.
   - Double free: Rust can't detect it, so it goes in `# Safety`. Not a fix: a
     "freed" flag inside `Counter`. Reading it after the free is itself a
     use-after-free.
@@ -86,10 +88,12 @@ fn main() {
   - Threads: two C threads calling `counter_add` on one counter are a data race.
     Either say "not concurrently" in the docs, or use `AtomicU32`.
   - `counter_add` and `counter_total` can be safe with `Option<&mut Counter>`
-    and `Option<&Counter>`, like `stats_get`. `Counter` needs no `#[repr(C)]`: C
-    never sees inside it.
-- `Option<Box<Counter>>` is also FFI-safe (`Box`'s docs, "Memory layout"), so
-  `counter_free` could be a safe `extern "C" fn` too. The C caller's contract
+    and `Option<&Counter>`, like `stats_get` in
+    [Exporting Rust to C](../../05-ffi/04-exporting.md). `Counter` needs no
+    `#[repr(C)]`: C never sees inside it.
+- `Option<Box<Counter>>` is also FFI-safe
+  ([`Box`'s memory layout](https://doc.rust-lang.org/std/boxed/index.html#memory-layout)),
+  so `counter_free` could be a safe `extern "C" fn` too. The C caller's contract
   then lives only in the header comment.
 - in Rust, `main` now needs `unsafe` to turn `c` into a reference. In C, there's
   no `unsafe` to write, so the header comment is the contract.

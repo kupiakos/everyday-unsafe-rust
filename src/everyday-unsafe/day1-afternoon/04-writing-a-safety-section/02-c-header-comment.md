@@ -18,11 +18,11 @@ int lib_fill(char *buf, size_t len, size_t *out);
 
 - **Question:** students list the requirements and promises in the C header
   comment: the buffer size, the `-1` return, and `*out` left unwritten. The
-  answer is on the next slide.
+  answer is on [UB or Just a Bug?](03-ub-or-bug.md).
 
 - You're wrapping this C function. Read the comment like a `# Safety` section.
 - Ask the class to list each requirement and promise in it. Expect three: the
   buffer size, the `-1` return, and `*out` left unwritten.
-- Don't sort them yet. The next slide does that.
+- Don't sort them yet. [UB or Just a Bug?](03-ub-or-bug.md) does that.
 
 </details>

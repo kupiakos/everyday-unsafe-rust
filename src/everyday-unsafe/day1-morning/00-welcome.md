@@ -38,7 +38,8 @@ This Course has been developed by Alyssa Haroldsen at
 - Ask: who has written `unsafe` Rust? Who has reviewed it?
 - The goal is a confident "yes" on simple `unsafe` reviews, and knowing when to
   escalate the rest.
-- One running example (`Vec`) and one exercise (the logger) carry the morning.
-- No threads this morning. `Send` and `Sync` come on Day 2.
+- One running example (`Vec`) and one exercise (the logger) carry this session.
+- No threads in this session. `Send` and `Sync` come in
+  [`Send`, `Sync`, and Data Races](../day2-morning/09-send-sync-and-data-races.md).
 
 </details>

@@ -14,7 +14,7 @@ hurt!
 - Some checks are compile time, like the borrow checker.
 - Some checks are run time, like slice indices.
 
-```rust,compile_fail
+```rust,compile_fail,editable
 fn main() {
     let mut v = vec![1, 2, 3];
     let first = &v[0];
@@ -40,8 +40,9 @@ efficiently.
 - `v[10]` would panic instead of reading past the end. A panic is a bug, but not
   a memory-safety bug.
 - The "but": safe Rust trusts every `unsafe` block under it. Unsound code breaks
-  safe Rust's contract, the way UB breaks the language's. The rest of the
+  safe Rust's contract, the way UB breaks the language's. The rest of Day 1
   morning is about that contract.
-- Next: the code the compiler can't check this way.
+- Next: the code the compiler can't check this way, in
+  [What the Compiler Can't Check](01-purpose-of-unsafe/01-cant-check.md).
 
 </details>

@@ -8,7 +8,7 @@ minutes: 2
 - Two threads update one reference count: a data race.
 - `unsafe impl<H> Send` sends `H` too. Fix: require `H: Send`.
 
-```rust
+```rust,editable
 # use std::ffi::c_void;
 #
 # pub struct Parser<H> {
@@ -31,6 +31,9 @@ unsafe impl<H: Send> Send for Parser<H> {}
   `unsafe impl` is a promise for every `H` the caller can choose.
 - Not a fix: "`H` must be `Send`" in a doc comment. The caller picks `H`, and
   the compiler only checks bounds.
-- Same bug as `LeakyBox` on the `Send`/`Sync` page this morning.
+- Same bug as `LeakyBox` in
+  [An `unsafe impl` for Every `T`](../../day2-morning/09-send-sync-and-data-races/05-every-t.md),
+  fixed the same way in
+  [Add the Bound](../../day2-morning/09-send-sync-and-data-races/06-add-the-bound.md).
 
 </details>

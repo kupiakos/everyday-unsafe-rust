@@ -13,7 +13,7 @@ other code that expects the code to be sound.
 - No caller passes null today.
 - Why is the reviewer unhappy?
 
-```rust
+```rust,editable
 pub fn read_and_double(x: *mut u32) -> u32 {
     unsafe { *x * 2 }
 }
@@ -29,10 +29,11 @@ fn doubles() {
 
 - **Answer:** `read_and_double`'s signature is at fault, not `main`.
   **Question:** why is the reviewer unhappy when every test passes? The answer
-  is on the next slide.
+  is on [Labels and Wiring](05-labels.md).
 
-- Answer to the last slide's question: `read_and_double`'s signature is at
-  fault, not `main`. A safe signature promises that every caller is fine.
+- Answer to the question on [Until Someone Touches It](03-touch.md):
+  `read_and_double`'s signature is at fault, not `main`. A safe signature
+  promises that every caller is fine.
 - Results are correct, tests are green, sanitizers are clean. Ask: why is the
   reviewer unhappy? Usual wrong answer: "nothing's broken, they're being
   pedantic".

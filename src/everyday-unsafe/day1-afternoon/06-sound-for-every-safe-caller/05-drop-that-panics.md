@@ -8,7 +8,7 @@ minutes: 2
 - It panics before `set_len(0)`.
 - Unwinding drops `"a"` a second time.
 
-```rust,no_run
+```rust,no_run,editable
 /// Drops every element of `v`, keeping its buffer.
 pub fn clear_bad<T>(v: &mut Vec<T>) {
     for x in v.iter_mut() {
@@ -44,7 +44,7 @@ fn main() {
   drops earlier elements twice, then the takeaway: set the length first, because
   leaking is safe.
 
-- Answer to the last slide's question.
+- Answer to the question on [A Generic Type](04-generic-type.md).
 - `T` is the caller's code. Its `Drop` runs in the middle of your function, and
   can do anything safe code can, including panic.
 - The second `SAFETY:` comment is fine. The first one assumed `set_len(0)`
@@ -53,6 +53,6 @@ fn main() {
   leaking is safe. `Vec::truncate` and `Vec::clear` set the length first, for
   this reason.
 - Zero-sized types break code that divides by `size_of::<T>()` or expects a
-  pointer to move after `add(1)`. Day 2's Pointers in Full covers them.
+  pointer to move after `add(1)`. This course doesn't cover them further.
 
 </details>

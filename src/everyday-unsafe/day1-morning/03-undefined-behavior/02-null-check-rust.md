@@ -9,7 +9,7 @@ minutes: 3
 - Same result: the check can vanish.
 - Rust has the same kind of rules.
 
-```rust
+```rust,editable
 pub struct Tun {
     sk: u32,
 }
@@ -35,8 +35,9 @@ pub unsafe fn poll(tun: *const Tun) -> Option<u32> {
   that rule, then Rust has the same kind of rule, so a raw pointer dereferenced
   before `is_null()` can lose its check too.
 
-- Answer to the last slide's question: not a compiler bug. Dereferencing null is
-  UB in C, and GCC relied on that rule.
+- Answer to the question on [The Null Check That Vanished](01-null-check-c.md):
+  not a compiler bug. Dereferencing null is UB in C, and GCC relied on that
+  rule.
 - Dereferencing a null raw pointer is UB in Rust too, so the optimizer may
   reason exactly like GCC did.
 - The `SAFETY:` comment is wrong on purpose: the `# Safety` section allows null,

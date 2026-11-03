@@ -12,7 +12,7 @@ minutes: 2
 | `unsafe {}` in `last`                  | Promises `get_unchecked` on slices | The trait's author, using the implementor's promise |
 | `unsafe {}` in `Packet::get_unchecked` | Promises `get_unchecked` on `Vec`  | `Packet`'s author, using the caller's promise       |
 
-```rust,no_run
+```rust,no_run,editable
 # /// # Safety
 # ///
 # /// `len` must return `as_slice().len()`.
@@ -61,16 +61,21 @@ unsafe impl Buffer for Packet {
   callers, and an `unsafe {}` block for whoever wrote that body, then the
   compiler enforces that shape.
 
-- Answer to the last slide's question.
+- Answer to the question on [`unsafe` in a Trait](04-trait-positions.md).
 - `unsafe` on a trait is homework for implementors. `unsafe` on a method is
   homework for callers. An `unsafe {}` block, in any body, is homework for
   whoever wrote that body.
 - The compiler enforces the shape:
-  - A plain `impl` of an `unsafe trait` is an error (E0200).
-  - `unsafe impl` of a safe trait is an error too (E0199).
-  - An impl can't make `get_unchecked` safe. It must stay `unsafe fn` (E0053).
-- Since the 2024 edition, the body of an `unsafe fn` isn't an `unsafe` block.
-  `Packet::get_unchecked` needs its own block and its own `SAFETY:` comment.
+  - A plain `impl` of an `unsafe trait` is an error
+    ([E0200](https://doc.rust-lang.org/error_codes/E0200.html)).
+  - `unsafe impl` of a safe trait is an error too
+    ([E0199](https://doc.rust-lang.org/error_codes/E0199.html)).
+  - An impl can't make `get_unchecked` safe. It must stay `unsafe fn`
+    ([E0053](https://doc.rust-lang.org/error_codes/E0053.html)).
+- Since the
+  [2024 edition](https://doc.rust-lang.org/edition-guide/rust-2024/unsafe-op-in-unsafe-fn.html),
+  the body of an `unsafe fn` isn't an `unsafe` block. `Packet::get_unchecked`
+  needs its own block and its own `SAFETY:` comment.
 - A safe method in a safe trait gets no promises from anyone. Any `unsafe {}`
   inside it must hold for every safe caller.
 

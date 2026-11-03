@@ -78,6 +78,8 @@ fn main() {
     does a panic do at an `extern "C"` boundary?
   - Hint for threads: is it something Rust can check here, or does it go in the
     docs?
-  - For the last question: recall `stats_get`. Does C ever see inside `Counter`?
+  - For the last question: recall `stats_get` in
+    [Exporting Rust to C](../05-ffi/04-exporting.md). Does C ever see inside
+    `Counter`?
 
 </details>

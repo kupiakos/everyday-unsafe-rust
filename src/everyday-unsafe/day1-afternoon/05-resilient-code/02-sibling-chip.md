@@ -9,7 +9,7 @@ minutes: 3
 - Same code reads the wrong register.
 - Gate on the exact fact you rely on.
 
-```rust
+```rust,editable
 /// Returns 32 bits from the hardware random number generator.
 // `target_arch = "xtensa"` alone also matches chips with other memory maps.
 #[cfg(all(target_arch = "xtensa", feature = "esp32"))]
@@ -31,8 +31,8 @@ pub fn hw_random_u32() -> u32 {
 - **Point:** gate on the exact fact the `SAFETY:` comment relies on:
   `target_arch = "xtensa"` alone also matches chips with other memory maps.
 
-- Story 1.9. Someone reuses the ESP32 code on a sibling chip with the same
-  `target_arch`. It builds, and silently reads some unrelated register.
+- Someone reuses the ESP32 code on a sibling chip with the same `target_arch`.
+  It builds, and silently reads some unrelated register.
 - The `SAFETY:` comment relied on "this is an ESP32", but the `cfg` only checked
   "this is Xtensa". The check didn't match the claim.
 - There's no built-in `cfg` for the exact chip, so the build has to provide one,

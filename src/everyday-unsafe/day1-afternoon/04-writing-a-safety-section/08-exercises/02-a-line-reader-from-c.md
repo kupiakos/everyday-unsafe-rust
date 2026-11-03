@@ -61,8 +61,10 @@ pub unsafe fn next_line<'a>(r: *mut RawReader) -> Option<&'a [u8]> {
 - For students without C: `RawReader` is an opaque C handle you only ever hold
   by pointer, and `c_char` is C's byte type.
 - `'a` isn't tied to any input, so nothing but the `# Safety` section limits it.
-  That's the point here. Day 2's Lifetimes section shows the safe fix: a
-  `Reader` wrapper whose `next_line(&mut self)` ties the slice to the borrow.
+  That's the point here. Day 2's
+  [Picking the Lifetime of a Raw Borrow](../../../day2-morning/10-picking-the-lifetime-of-a-raw-borrow.md)
+  shows the safe fix: a `Reader` wrapper whose `next_line(&mut self)` ties the
+  slice to the borrow.
 - Hints:
   - Hint: expect six items in the header.
   - Hint: for each item, what goes wrong if it's false? Is that UB, or just

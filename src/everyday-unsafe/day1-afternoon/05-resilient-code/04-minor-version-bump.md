@@ -8,7 +8,7 @@ minutes: 2
 - `config` 1.4.1 returns an empty `Vec` when nothing is configured.
 - Nobody touched your code. Whose bug is it?
 
-```rust
+```rust,editable
 mod config {
     /// Returns the configured names.
     pub fn names() -> Vec<String> {
@@ -27,10 +27,10 @@ pub fn primary_name() -> String {
 
 - **Question:** students decide whose bug it is when a patch release of `config`
   returns an empty `Vec` (yours: `names()` never promised non-empty). The answer
-  is on the next slide.
+  is on [Nobody Promised That](05-nobody-promised-that.md).
 
 - Ask: "Who broke it: `config`'s author, or you?" Let the class argue, and hold
-  the answer for the next slide.
+  the answer for [Nobody Promised That](05-nobody-promised-that.md).
 - Usual wrong answer: "`config` did. It changed behavior in a patch release."
 - Hint if stuck: read `names()`'s doc comment. What does it promise?
 

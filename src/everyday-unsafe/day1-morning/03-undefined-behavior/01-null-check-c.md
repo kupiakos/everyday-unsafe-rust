@@ -21,14 +21,16 @@ static unsigned int tun_chr_poll(struct file *file, poll_table *wait) {
 <details>
 
 - **Question:** students decide whether GCC deleting the `tun` null check is a
-  compiler bug. The answer is on the next slide.
+  compiler bug. The answer is on
+  [The Same Thing in Rust](02-null-check-rust.md).
 
-- Story 1.2. GCC reasoned: `tun` was just dereferenced, so it can't be null, so
-  `if (!tun)` is always false.
+- GCC reasoned: `tun` was just dereferenced, so it can't be null, so `if (!tun)`
+  is always false.
 - With page zero mapped, the null dereference didn't crash, and the bug became
   an exploitable privilege escalation.
 - Ask: is this a compiler bug? Usual answer: yes. It isn't: the code broke a
-  rule, and the compiler relied on it. The next slide opens with that.
+  rule, and the compiler relied on it.
+  [The Same Thing in Rust](02-null-check-rust.md) opens with that.
 - The kernel now builds with `-fno-delete-null-pointer-checks`.
 
 </details>

@@ -7,9 +7,10 @@ minutes: 3
 - C's docs: callbacks run on a worker thread.
 - So `State` must be `Send`.
 - The `void*` hides that from the compiler.
-- `env::set_var` is `unsafe` for the same reason.
+- [`env::set_var`](https://doc.rust-lang.org/std/env/fn.set_var.html#safety) is
+  `unsafe` for the same reason.
 
-```rust
+```rust,editable
 use std::env;
 
 pub struct State {
@@ -42,9 +43,10 @@ pub fn use_utc() {
 - `Send` is enough if only one thread touches `State` at a time. If `Parser`
   also reads `records` while the worker thread runs, `State` needs a `Mutex` or
   atomics too.
-- `env::set_var` became `unsafe` in the 2024 edition. Rust's own `env` functions
-  take a lock, but C's `getenv` doesn't, so another thread calling `getenv` at
-  the same time is a data race.
+- `env::set_var` became `unsafe` in
+  [the 2024 edition](https://doc.rust-lang.org/edition-guide/rust-2024/newly-unsafe-functions.html#stdenvset_var-remove_var).
+  Rust's own `env` functions take a lock, but C's `getenv` doesn't, so another
+  thread calling `getenv` at the same time is a data race.
 - Ask: "Who else might call `getenv`?" Any C library, including `logparse` and
   the C library's time functions. Usually the only safe time is before starting
   threads.

@@ -22,6 +22,6 @@ minutes: 2
 - If a breaker labeled 20 A trips at 40 A, whose fault is the fire? The
   manufacturer's, not the electrician's.
 - Ask: what's the "label" you trust most at work? (Usually: documentation.)
-- The next slide is the same table, for software.
+- [A Stack of Contracts](02-stack.md) is the same table, for software.
 
 </details>

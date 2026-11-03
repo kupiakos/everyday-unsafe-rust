@@ -7,7 +7,7 @@ minutes: 3
 - The caller's closure can panic.
 - Unwinding leaves your state half-done.
 
-```rust,no_run
+```rust,no_run,editable
 /// Replaces each element `x` with `f(x)`.
 pub fn map_in_place<T>(v: &mut [T], mut f: impl FnMut(T) -> T) {
     for x in v.iter_mut() {
@@ -37,7 +37,8 @@ fn main() {
   is well. If `f` panics, `p.write` never runs.
 - The `SAFETY:` comment is true, and the function is still unsound. The proof
   forgot that `f` might not return.
-- Fixes need Day 2's Panics, Leaks, and Drop Guarantees: for example, abort on
-  panic, or require `T: Default` and use `mem::take`.
+- Fixes need Day 2's
+  [Panics, Leaks, and Drop Guarantees](../../day2-morning/05-panics-leaks-and-drop-guarantees.md):
+  for example, abort on panic, or require `T: Default` and use `mem::take`.
 
 </details>

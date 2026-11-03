@@ -9,7 +9,7 @@ minutes: 3
 - `unsafe extern`: "I promise this matches."
 - The compiler can't check that promise.
 
-```rust
+```rust,editable
 use std::ffi::{c_char, c_int};
 
 /// Opaque: only C knows what's inside.

@@ -31,8 +31,9 @@ void lp_free(lp_parser *p);
   types → `#[repr(C)]` → nullable callbacks as `Option` → generate them with
   `bindgen` → exercises.
 
-- This library is the whole afternoon: bindings now, a safe wrapper next, then
-  the callback, then a review of someone else's changes to it.
+- This library is the whole afternoon: bindings now, then
+  [a safe wrapper](03-where-the-unsafe-goes.md), [the callback](05-ffi.md), and
+  [a review](06-reviewing-an-unsound-diff.md) of someone else's changes to it.
 - Open Compiler Explorer with this header in a C pane and an empty Rust pane
   next to it. Every example today fits there, with no build system.
 - Ask: "What does this header promise, and what does it leave to the docs?" The

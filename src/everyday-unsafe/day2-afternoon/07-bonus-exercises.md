@@ -5,8 +5,10 @@ minutes: 0
 # Bonus Exercises
 
 - More practice, for after class or if you finish early.
-- The Self-Referential Tokenizer (after "Pinning")
-- Export a Counter to C (after "FFI")
+- [The Self-Referential Tokenizer](07-bonus-exercises/01-the-self-referential-tokenizer.md)
+  (after [Pinning](04-pinning.md))
+- [Export a Counter to C](07-bonus-exercises/02-export-a-counter-to-c.md) (after
+  [FFI](05-ffi.md))
 
 <details>
 

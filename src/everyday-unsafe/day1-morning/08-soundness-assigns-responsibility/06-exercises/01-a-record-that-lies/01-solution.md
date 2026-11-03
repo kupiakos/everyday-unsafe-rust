@@ -65,19 +65,24 @@ unsafe impl Record for u32 {
 - with Fix 2, the liar has to write `unsafe impl`, and its `SAFETY:` comment
   can't be true. Blame moves to the impl.
 - Fix 2 is crying wolf here. It's worth it only when the check is expensive, or
-  impossible, like `Size32`.
+  impossible, like [`Size32`](../../03-size32.md).
 - At fault: `write_record`. Its `SAFETY:` comment cites a safe trait's docs.
-  Like `Eq`, a safe trait's rules can be broken by safe code.
+  Like [`Eq`](../../02-eq-can-lie.md), a safe trait's rules can be broken by
+  safe code.
 - Usual wrong answer: "the impl broke the documented rule". That's a logic bug.
   A safe impl can't be at fault for UB.
 - Hint if needed: one fix is a check, the other makes `Record` an
   `unsafe trait`, with a `# Safety` section and a `SAFETY:` comment on the impl.
 - Fix 1: `&mut buf[..n]`. One comparison. Prefer it.
-- Fix 2: an `unsafe trait`, like `Size32`. Now the liar must write
-  `unsafe impl`, and its `SAFETY:` comment is false, so the fault moves to it.
-  The cost: every implementor writes `unsafe` to save one comparison.
+- Fix 2: an `unsafe trait`, like [`Size32`](../../03-size32.md). Now the liar
+  must write `unsafe impl`, and its `SAFETY:` comment is false, so the fault
+  moves to it. The cost: every implementor writes `unsafe` to save one
+  comparison.
 - What isn't a fix: "at most 64" in bold in the docs, or a `debug_assert!`.
-- In `std`: `ExactSizeIterator::len` is safe and can lie, so `unsafe` code can't
-  trust it. `TrustedLen` (unstable) is the `unsafe trait` version.
+- In `std`:
+  [`ExactSizeIterator::len`](https://doc.rust-lang.org/std/iter/trait.ExactSizeIterator.html)
+  is safe and can lie, so `unsafe` code can't trust it.
+  [`TrustedLen`](https://doc.rust-lang.org/std/iter/trait.TrustedLen.html#safety)
+  (unstable) is the `unsafe trait` version.
 
 </details>

@@ -8,7 +8,7 @@ minutes: 5
 - Each has a safety invariant.
 - `Vec`'s `unsafe` code trusts them.
 
-```rust
+```rust,editable
 use std::ptr::NonNull;
 
 /// Roughly how `std::vec::Vec` is laid out (the real one adds an allocator
@@ -34,13 +34,16 @@ pub struct Vec<T> {
   inside → `set_len` → `truncate` → delete half of `truncate` → four ways to
   read `x[0]` → three shapes of sound code → exercise.
 
-- The running example, opened up. The real `Vec` adds `RawVec` and an allocator
-  parameter, but the invariants are the same.
+- The running example, opened up. The real
+  [`Vec`](https://doc.rust-lang.org/std/vec/struct.Vec.html#guarantees) adds
+  `RawVec` and an allocator parameter, but the invariants are the same.
 - The fields are private, so only `Vec`'s own module can break these invariants.
   Every `unsafe` block in `Vec` relies on them.
 - When `cap` is 0, `ptr` is `NonNull::dangling()`: non-null and aligned, but
-  pointing at nothing. The logger showed that's not "valid".
+  pointing at nothing.
+  [Null Checks Don't Make It Sound](06-fixing-an-unsound-logger/01-null-checks-dont-make-it-sound.md)
+  showed that's not "valid".
 - Ask: which field would you least want a caller to write? (Hold the answer for
-  `set_len`.)
+  [`set_len`](07-operation-vs-interface/02-set-len.md).)
 
 </details>

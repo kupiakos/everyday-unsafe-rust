@@ -9,7 +9,7 @@ Let the compiler do its job of validation while you declare what's required.
 
 ### `handler.rs`
 
-```rust
+```rust,editable
 #[derive(Default)]
 pub struct Logger {
     pub lines: Vec<String>,
@@ -33,7 +33,7 @@ impl<'a> Handler<'a> {
 
 ### `cpp_glue.rs`
 
-```rust
+```rust,editable
 # #[derive(Default)]
 # pub struct Logger {
 #     pub lines: Vec<String>,
@@ -67,7 +67,7 @@ pub unsafe fn handle_request(logger: *mut Logger) {
 
 ### `main.rs`
 
-```rust
+```rust,editable
 # mod handler {
 #     #[derive(Default)]
 #     pub struct Logger {
@@ -107,12 +107,14 @@ fn main() {
 - We declare how long the pointer must be valid _in the type_ itself. `'a` means
   "borrowed for as long as the `Handler` exists".
 - If we still wanted optionality, then `Option<&mut Logger>` is just as
-  efficient as passing `*mut Logger`: null is `None`.
+  efficient as passing `*mut Logger`:
+  [null is `None`](https://doc.rust-lang.org/std/option/index.html#representation).
 
 - C++ still hands us a pointer. Convert it once, at the boundary.
 - The rest of the Rust code, including `main`, gets a checked reference.
 - `'a` says the handler can't outlive the logger. The compiler enforces it.
 - `handle_request`'s `# Safety` section is a promise about C++ code. If C++ also
-  uses the logger while a handler exists, Fix 1 doesn't fit: that's Fix 2.
+  uses the logger while a handler exists, Fix 1 doesn't fit: that's
+  [Fix 2](03-fix-2-make-handler-new-unsafe.md).
 
 </details>

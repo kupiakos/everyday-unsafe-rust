@@ -7,7 +7,7 @@ minutes: 3
 - One line per bullet of the callee's `# Safety`.
 - Each line says where the evidence is.
 
-```rust
+```rust,editable
 /// # Safety
 ///
 /// `ptr` must be non-null, aligned, and point to `len` initialized `u16`s in
@@ -30,11 +30,13 @@ pub unsafe fn as_slice<'a>(ptr: *const u16, len: usize) -> &'a [u16] {
   `# Safety`, so a reviewer can check each one. Inside an `unsafe fn`, "my
   caller promised it" is valid evidence.
 
-- The five lines match the five rows from "A Long List".
+- The five lines match the five rows from
+  [A Long List](../02-reading-a-safety-section/06-a-long-list.md).
 - Here every answer is "my caller promised it". That's fine: this function is
   `unsafe` too, so it passes the requirements up in its own `# Safety`.
-- A reviewer can check each line against the docs, one at a time. Nothing is
-  hidden in "the pointer is valid".
+- A reviewer can check each line against
+  [the docs](https://doc.rust-lang.org/std/slice/fn.from_raw_parts.html#safety),
+  one at a time. Nothing is hidden in "the pointer is valid".
 - Ask: "Which line would you have forgotten?" Often the last one.
 
 </details>

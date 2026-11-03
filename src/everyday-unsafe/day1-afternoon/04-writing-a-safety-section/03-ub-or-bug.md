@@ -18,10 +18,10 @@ minutes: 1
 
 - **Question:** for each header item, students decide whether getting it wrong
   is UB or just a bug, and so whether it goes in `# Safety` or `# Errors`. The
-  answer is on the next slide.
+  answer is on [Where Each Line Goes](04-where-each-line-goes.md).
 
-- Ask the class to fill in both columns before moving on. The next slide has the
-  answers.
+- Ask the class to fill in both columns before moving on.
+  [Where Each Line Goes](04-where-each-line-goes.md) has the answers.
 - Expected: rows 1 and 3 are UB and go in `# Safety`. Row 2 goes in `# Errors`.
 - Usual wrong answer: "Ignoring `-1` is UB, so it goes in `# Safety`." On its
   own it's a logic bug. It only becomes UB through row 3.

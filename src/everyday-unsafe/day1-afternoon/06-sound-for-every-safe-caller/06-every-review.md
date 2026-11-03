@@ -8,12 +8,12 @@ minutes: 3
 - "Any" includes hostile, panicking, and lying callers.
 - If yes, the safe function is unsound.
 
-| The hostile caller tries | It breaks code that trusts       | More on Day 2           |
-| ------------------------ | -------------------------------- | ----------------------- |
-| `usize::MAX`, empty      | Arithmetic that "can't" overflow | In-Bounds Access        |
-| A panicking closure      | Code that finishes what it began | Panics, Leaks, and Drop |
-| A lying trait impl       | A safe trait's documentation     | Library vs Language     |
-| A surprising `T`         | Assumptions about size and drop  | Pointers in Full        |
+| The hostile caller tries | It breaks code that trusts                                                                      | More on Day 2                                                                        |
+| ------------------------ | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| `usize::MAX`, empty      | Arithmetic that "can't" overflow                                                                | [In-Bounds Access](../../day2-morning/07-the-raw-pointer-checklist/04-in-bounds.md)  |
+| A panicking closure      | Code that finishes what it began                                                                | [Panics, Leaks, and Drop](../../day2-morning/05-panics-leaks-and-drop-guarantees.md) |
+| A lying trait impl       | [A safe trait's documentation](https://doc.rust-lang.org/std/iter/trait.ExactSizeIterator.html) | [Library vs Language](../../day2-morning/06-library-vs-language-invariants.md)       |
+| A surprising `T`         | Assumptions about size and drop                                                                 | [Panics, Leaks, and Drop](../../day2-morning/05-panics-leaks-and-drop-guarantees.md) |
 
 <details>
 

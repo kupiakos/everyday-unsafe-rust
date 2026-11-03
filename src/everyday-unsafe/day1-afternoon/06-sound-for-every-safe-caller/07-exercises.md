@@ -12,7 +12,7 @@ minutes: 1
 - **Goal:** attacking a safe function as a hostile caller, finding the false
   `SAFETY:` comment, and fixing it so no safe call causes UB.
 
-- "Sum of `u16`s" is in Bonus Exercises at the end of the day, for students who
-  want more.
+- [Sum of `u16`s](../07-bonus-exercises/02-sum-of-u16s.md) is in Bonus Exercises
+  at the end of the day, for students who want more.
 
 </details>

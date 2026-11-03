@@ -9,7 +9,7 @@ minutes: 3
 - Both mistakes pass tests on x86-64.
 - Both are UB.
 
-```rust
+```rust,editable
 use std::ffi::{c_char, c_int};
 
 unsafe extern "C" {
@@ -45,7 +45,8 @@ fn has_data() -> Result<bool, c_int> {
   program holds an invalid `bool`, which is UB immediately, not when it's used.
 - The fix for `int` results: bind `c_int` and convert with a `match`, like
   `has_data`. Ask: "What should `lp_feed` return?" (`c_int`, which it does.)
-- Compile error > panic > UB: none of these mistakes is a compile error, which
-  is the argument for generating bindings (last slide of this section).
+- [Compile error > panic > UB](../../day1-afternoon/05-resilient-code/06-ladder.md):
+  none of these mistakes is a compile error, which is the argument for
+  [generating the bindings](05-generate-them.md).
 
 </details>

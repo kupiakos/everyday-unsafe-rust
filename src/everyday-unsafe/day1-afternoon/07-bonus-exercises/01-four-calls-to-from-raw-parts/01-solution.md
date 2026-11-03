@@ -42,10 +42,13 @@ fn main() {
 
 - three of the four fixes need no `unsafe`. A slice made from a `Vec` should
   just borrow it. Then the borrow checker enforces bullet 4.
-- `NonNull::dangling()` with length 0 is the other fix for 1.
+- [`NonNull::dangling()`](https://doc.rust-lang.org/std/ptr/struct.NonNull.html#method.dangling)
+  with length 0 is the other fix for 1.
 - 1 breaks bullet 1: non-null even when `len == 0`. Usual wrong answer: "Length
-  0 reads nothing." The next section has a slide on exactly this. If someone
-  runs it, a debug build's precondition check stops at 1.
+  0 reads nothing."
+  [Non-Null, Even for Zero](../../03-writing-safety-comments/03-non-null-even-for-zero.md)
+  is a slide on exactly this. If someone runs it, a debug build's precondition
+  check stops at 1.
 - 2 is fine.
 - 3 breaks bullet 3. The memory is in the allocation (bullet 2 holds), but only
   one `u32` is initialized. The C habit: "I allocated it, so I can read it."

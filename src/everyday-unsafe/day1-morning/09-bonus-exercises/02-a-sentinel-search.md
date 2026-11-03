@@ -67,7 +67,8 @@ fn main() {
     `self.0.partial_cmp(&other.0).unwrap_or(Ordering::Less)`, with a NaN key.
     Simplest liar: always return `Ordering::Less`.
   - If they say "`Score` broke `Ord`'s rules, so it's at fault": what do the
-    `Ord` docs say `unsafe` code may rely on?
+    [`Ord` docs](https://doc.rust-lang.org/std/cmp/trait.Ord.html) say `unsafe`
+    code may rely on?
   - If they fix `Score::cmp`: what happens with the next caller's `Ord`?
   - Hint for "is it still fast?": is a linear scan the fastest way to search a
     sorted slice?

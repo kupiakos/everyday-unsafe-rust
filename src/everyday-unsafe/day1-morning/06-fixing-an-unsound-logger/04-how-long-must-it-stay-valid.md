@@ -10,7 +10,7 @@ minutes: 3
 
 ## `handler.rs`
 
-```rust
+```rust,editable
 # #[derive(Default)]
 # pub struct Logger {
 #     pub lines: Vec<String>,
@@ -43,7 +43,7 @@ impl Handler {
 
 ## `main.rs`
 
-```rust,no_run
+```rust,no_run,editable
 # #[derive(Default)]
 # pub struct Logger {
 #     pub lines: Vec<String>,
@@ -79,7 +79,8 @@ fn main() {
 <details>
 
 - **Question:** students find the requirement the caller's `SAFETY:` comment
-  forgot: how long. The answer is on the next slide.
+  forgot: how long. The answer is on
+  [A Safe `Handler::new`](05-a-safe-handler-new.md).
 
 - Ask: is `make_handler`'s `SAFETY:` comment right? Usual wrong answer: "yes,
   `&mut logger` is a valid pointer".
@@ -88,8 +89,9 @@ fn main() {
   `make_handler` returns, the `Handler` still points to it, and `log` uses it
   after that: UB.
 - `Handler::new` is `unsafe` and documented, so the blame is on `make_handler`.
-  The next slide opens with that.
-- Ask: how would Fix 1 handle this? `Handler<'a>` ties the handler to the borrow
-  of `logger`, and `make_handler` doesn't compile (E0515).
+  [A Safe `Handler::new`](05-a-safe-handler-new.md) opens with that.
+- Ask: how would [Fix 1](02-fix-1-stay-safe.md) handle this? `Handler<'a>` ties
+  the handler to the borrow of `logger`, and `make_handler` doesn't compile
+  (E0515).
 
 </details>

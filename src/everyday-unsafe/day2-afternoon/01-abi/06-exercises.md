@@ -13,6 +13,8 @@ minutes: 1
 - **Goal:** review hand-written bindings against a C header: types, nullability,
   and layout.
 
-- Do "Spot the Binding Bugs" first. Short on time: skip "Catch Layout Drift".
+- Do [Spot the Binding Bugs](06-exercises/01-spot-the-binding-bugs.md) first.
+  Short on time: skip
+  [Catch Layout Drift](06-exercises/02-catch-layout-drift.md).
 
 </details>

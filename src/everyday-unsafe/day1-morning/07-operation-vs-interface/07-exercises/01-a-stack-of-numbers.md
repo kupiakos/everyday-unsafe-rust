@@ -72,13 +72,16 @@ fn main() {}
   - If they say "`push` writes `len`, so it needs `unsafe`": what does the first
     line of `push` do when the stack is full?
   - If they say "`replace_storage` doesn't touch `len`": which fields does the
-    invariant name? Recall the renovation slide.
+    invariant name? See
+    [The Renovation](../../05-unsafe-vs-unsound/06-renovation.md): a new safe
+    method broke an invariant that an untouched `unsafe` block relied on.
   - Hint for the last question: for each `unsafe fn`, is there a call that
     breaks the invariant?
   - If they make `as_slice` an `unsafe fn`: who would have to prove the
     invariant, and can they see it?
   - If they add a doc comment to `set_len`: does a safe caller have to read it?
-  - Bigger hint: look up which of `Vec`'s methods with the same names are
-    `unsafe`.
+  - Bigger hint: look up which of
+    [`Vec`'s methods](https://doc.rust-lang.org/std/vec/struct.Vec.html) with
+    the same names are `unsafe`.
 
 </details>

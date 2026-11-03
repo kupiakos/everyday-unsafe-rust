@@ -17,7 +17,8 @@ minutes: 1
 <details>
 
 - **Question:** students work out which layer is most likely at fault when code
-  breaks only at `-O3`. The answer is on the next slide.
+  breaks only at `-O3`. The answer is on
+  [Usually, It's Your Code](04-usually-your-code.md).
 
 - Ask: have you ever blamed the compiler? Were you right?
 - Ask: which layer is most likely at fault here? Usual wrong answer: the

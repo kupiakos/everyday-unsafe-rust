@@ -74,8 +74,9 @@ fn main() {}
     field probably catches this one, but only on the targets it runs on.
 - `default_opts` shows why the `Option` matters. `assume_init` on a struct
   holding a null `fn` pointer would be UB right there.
-- `is_valid` is the `has_data` pattern from the wrong return type slide. Ask:
-  "Is `img_decoded_size` safe to call with any `buf`?" No: C reads `len` bytes,
-  so a wrapper takes `&[u8]`.
+- `is_valid` is the `has_data` pattern from
+  [The Wrong Return Type](../../02-wrong-return-type.md): bind `c_int`, then
+  `match` 0 and 1. Ask: "Is `img_decoded_size` safe to call with any `buf`?" No:
+  C reads `len` bytes, so a wrapper takes `&[u8]`.
 
 </details>

@@ -4,11 +4,13 @@ minutes: 3
 
 # More on Day 2
 
-- Non-null is only one part of "valid".
+- Non-null is only one part of
+  ["valid"](https://doc.rust-lang.org/std/ptr/index.html#safety).
 - No runtime check tells you a pointer is valid.
-- Day 2 unpacks "valid" into a list.
+- [The Raw Pointer Checklist](../../day2-morning/07-the-raw-pointer-checklist.md)
+  unpacks "valid" into a list.
 
-```rust
+```rust,editable
 use std::ptr::NonNull;
 
 fn main() {
@@ -25,14 +27,18 @@ fn main() {
 <details>
 
 - **Point:** non-null isn't valid: a dangling pointer is non-null, no runtime
-  check can tell, and Day 2 lists the rest of validity.
+  check can tell, and
+  [The Raw Pointer Checklist](../../day2-morning/07-the-raw-pointer-checklist.md)
+  lists the rest of validity.
 
-- This is the morning's "what isn't a fix" from the logger: the null check let
-  `NonNull::dangling()` through.
+- The logger hits this later: in
+  [Null Checks Don't Make It Sound](../06-fixing-an-unsound-logger/01-null-checks-dont-make-it-sound.md),
+  a null check lets `NonNull::dangling()` through.
 - `q` is the C bug of returning the address of a local. Rust lets you make the
   pointer; it just won't let you read through it without `unsafe`.
 - Ask: "What else could make a pointer invalid?" Collect answers (freed,
-  misaligned, wrong type, out of bounds) and park them for Day 2.
+  misaligned, wrong type, out of bounds) and park them for
+  [The Raw Pointer Checklist](../../day2-morning/07-the-raw-pointer-checklist.md).
 - For the rest of today, "valid" means "points at a live value of the right
   type". We practice reading and writing the contract itself.
 

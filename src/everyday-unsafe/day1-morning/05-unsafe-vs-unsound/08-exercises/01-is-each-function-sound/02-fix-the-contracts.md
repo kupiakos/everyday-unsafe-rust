@@ -4,7 +4,7 @@ minutes: 5
 
 # Part 3: Fix the Contracts
 
-- Part 2's answer: `midpoint(&[])`, and `pair_at(&[7], 0)`.
+- [Part 2](01-cause-ub.md)'s answer: `midpoint(&[])`, and `pair_at(&[7], 0)`.
 - Fix both, so no caller who follows the contract gets UB.
 - Change the code, the `# Safety` section, or both.
 
@@ -52,8 +52,9 @@ fn main() {}
 - **Goal:** fixing an unsound function by changing its code, its `# Safety`
   section, or both, so no caller who follows the contract gets UB.
 
-- Answer to the last slide: `midpoint(&[])` needs no `unsafe` at all.
-  `pair_at(&[7], 0)` follows the `# Safety` section and reads index 1 anyway.
+- Answer to [Part 2: Cause UB from `main`](01-cause-ub.md): `midpoint(&[])`
+  needs no `unsafe` at all. `pair_at(&[7], 0)` follows the `# Safety` section
+  and reads index 1 anyway.
 - Hints:
   - If they add a "must be non-empty" doc comment to a safe `fn`: who has to
     read it?

@@ -4,11 +4,12 @@ minutes: 1
 
 # Calling the LZO Function
 
-- The LZO function from this morning.
+- The LZO function from
+  [Writing the Contract Down](../../day1-morning/04-contracts-between-engineers/08-writing-it-down.md).
 - Its `# Safety` is precise: who, what, until when.
 - Write the `SAFETY:` comment for this call.
 
-```rust
+```rust,editable
 /// # Safety
 ///
 /// The caller must ensure that `dst` is valid for writes of at least as many
@@ -29,8 +30,8 @@ pub fn load(src: &[u8]) -> Vec<u8> {
 <details>
 
 - **Question:** students try to write the `SAFETY:` comment and find that
-  nothing in `load` can show `dst` is big enough. The answer is on the next
-  slide.
+  nothing in `load` can show `dst` is big enough. The answer is on
+  [A Precondition Nobody Can Check](07-nobody-can-check.md).
 
 - Ask: "What evidence would your `SAFETY:` comment point at?" Give the class a
   minute to try.
@@ -38,6 +39,7 @@ pub fn load(src: &[u8]) -> Vec<u8> {
   decompressed size, and nothing in the arguments tells them.
 - Usual wrong answers: "4096 is enough for our data." That's a guess, not
   evidence. "The data comes from us." A file is input, not a contract.
-- The next slide says why this is a design problem.
+- [A Precondition Nobody Can Check](07-nobody-can-check.md) says why this is a
+  design problem.
 
 </details>

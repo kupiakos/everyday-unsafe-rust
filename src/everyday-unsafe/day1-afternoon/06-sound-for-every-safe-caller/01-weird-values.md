@@ -7,7 +7,7 @@ minutes: 3
 - Try empty slices, `0`, and `usize::MAX`.
 - Release builds wrap on overflow.
 
-```rust,no_run
+```rust,no_run,editable
 pub fn pair<T>(v: &[T], i: usize) -> (&T, &T) {
     assert!(i + 1 < v.len());
     // SAFETY: `i < i + 1 < v.len()`, checked by the `assert!`.
@@ -35,6 +35,8 @@ fn main() {
   trying: `v.len() - 1` is the classic.
 - Fixes: `i.checked_add(1)`, or plain `(&v[i], &v[i + 1])`. Ask: "Is the
   `unsafe` worth it at all?"
-- Day 2's In-Bounds Access comes back to arithmetic like this.
+- Day 2's
+  [In-Bounds Access](../../day2-morning/07-the-raw-pointer-checklist/04-in-bounds.md)
+  comes back to arithmetic like this.
 
 </details>

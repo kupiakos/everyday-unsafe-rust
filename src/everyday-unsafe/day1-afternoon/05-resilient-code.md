@@ -25,17 +25,19 @@ minutes: 3
   error > panic > UB.
 
 - Usual wrong idea: "Bastardized idea of resilient code = defensive coding, null
-  check everything." The logger already showed a null check doesn't make code
-  sound.
+  check everything."
+  [Null Checks Don't Make It Sound](../day1-morning/06-fixing-an-unsound-logger/01-null-checks-dont-make-it-sound.md)
+  already showed a null check doesn't make code sound.
 - "If you need to make sync'd edits across a codebase for things to not just
   compile but be correct, then it's not resilient."
-- It's "facts go stale" at a larger scale. A check is only evidence if nothing
-  since then could undo it. A future edit, a new target, or a dependency update
-  is just a slower way to undo it.
-- From the Oct 21 discussion: non-portable code should fail to compile on
-  platforms it doesn't support. That's how it survives a platform owner changing
-  the rules, like pointer signing on iOS taking bits that tagged pointers
-  assumed were free.
+- It's
+  [A Stale `SAFETY:` Comment](03-writing-safety-comments/05-stale-comment.md) at
+  a larger scale. A check is only evidence if nothing since then could undo it.
+  A future edit, a new target, or a dependency update is just a slower way to
+  undo it.
+- Non-portable code should fail to compile on platforms it doesn't support.
+  That's how it survives a platform owner changing the rules, like pointer
+  signing on iOS taking bits that tagged pointers assumed were free.
 - This section: a new platform (portability, the sibling chip), a dependency
   update, and then the ladder that ties them together.
 

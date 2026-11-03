@@ -19,7 +19,7 @@ minutes: 2
   `# Safety`, while `-1` goes in `# Errors`, then the takeaway: only UB belongs
   in `# Safety`.
 
-- Answer to the last slide's question.
+- Answer to the question on [UB or Just a Bug?](03-ub-or-bug.md).
 - Ignoring `-1` on its own is a logic bug. It only becomes UB through the third
   row: reading `*out` when nothing wrote it.
 - If the caller initialized `out` first, the third row is just a wrong number,

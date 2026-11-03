@@ -12,7 +12,7 @@ minutes: 1
 - **Goal:** assigning blame when a safe trait impl lies, and fixing `unsafe`
   code that relied on a trait law.
 
-- "A Sentinel Search" is in Bonus Exercises at the end of the day, for students
-  who want more.
+- "A Sentinel Search" is in [Bonus Exercises](../09-bonus-exercises.md), for
+  students who want more.
 
 </details>

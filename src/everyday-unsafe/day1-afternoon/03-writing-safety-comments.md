@@ -7,7 +7,7 @@ minutes: 5
 - `# Safety`: what callers must ensure.
 - `SAFETY:`: why it's true at this line.
 
-```rust,ignore
+```rust,ignore,editable
 /// # Safety
 ///
 /// - `logger` must point to a live `Logger` for as long as the `Handler`
@@ -31,7 +31,9 @@ fn main() {
   even for zero → evidence, not reassurance → a stale comment → one block, one
   proof → exercises.
 
-- This is the logger's Fix 2 from this morning, trimmed to the pair.
+- This is the logger's
+  [Fix 2: Make `Handler::new` `unsafe`](../day1-morning/06-fixing-an-unsound-logger/03-fix-2-make-handler-new-unsafe.md),
+  trimmed to the pair.
 - `# Safety` is written once, by the author of the `unsafe fn`. `SAFETY:` is
   written at every call site, by the caller.
 - The comment names the requirement and the evidence: `logger` and `handler` are

@@ -8,7 +8,7 @@ minutes: 3
 - Point at the evidence.
 - A reviewer must be able to check it.
 
-```rust
+```rust,editable
 fn pick(v: &[u32], i: usize) -> u32 {
     assert!(i < v.len());
     // Reassurance: "SAFETY: this is fine."
@@ -25,8 +25,8 @@ fn pick(v: &[u32], i: usize) -> u32 {
 - **Point:** a `SAFETY:` comment names the requirement and points at evidence a
   reviewer can check. "This is fine" and "`i` is valid" give them nothing.
 
-- `get_unchecked`'s `# Safety` section: an out-of-bounds index is UB, even if
-  the resulting reference is never used.
+- [`get_unchecked`'s `# Safety` section](https://doc.rust-lang.org/std/primitive.slice.html#method.get_unchecked):
+  an out-of-bounds index is UB, even if the resulting reference is never used.
 - "This is fine" gives the reviewer nothing to check. "`i` is valid" uses a word
   that hides the actual property.
 - Have the class rewrite a few vague comments from their own codebase, if they

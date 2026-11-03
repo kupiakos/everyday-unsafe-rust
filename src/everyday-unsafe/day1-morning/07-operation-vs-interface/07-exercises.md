@@ -12,7 +12,7 @@ minutes: 1
 - **Goal:** deciding which methods need an `unsafe` interface, by finding every
   method that writes a field the safety invariant names.
 
-- "A Safe `ColorId::new`" is in Bonus Exercises at the end of the day, for
+- "A Safe `ColorId::new`" is in [Bonus Exercises](../09-bonus-exercises.md), for
   students who want more.
 
 </details>

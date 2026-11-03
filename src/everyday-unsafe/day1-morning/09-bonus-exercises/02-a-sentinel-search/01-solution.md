@@ -47,18 +47,22 @@ fn main() {
 - **Answer:** `unwrap_or(Ordering::Less)` with a NaN key, and `lower_bound` is
   at fault; fix it with safe `partition_point`.
 
-- Usual wrong answer: "`Score` broke `Ord`'s rules, so it's at fault". The `Ord`
-  docs say a logic error in an impl must not cause UB, and `unsafe` code must
-  not rely on these methods being correct.
+- Usual wrong answer: "`Score` broke `Ord`'s rules, so it's at fault". The
+  [`Ord` docs](https://doc.rust-lang.org/std/cmp/trait.Ord.html) say a logic
+  error in an impl must not cause UB, and `unsafe` code must not rely on these
+  methods being correct.
 - Expected fix: change `lower_bound`, without `unsafe`. A student who "fixes"
   `Score::cmp` has fixed this one caller, and the next liar still gets UB.
 - Fix: `partition_point`, a binary search. It's safe, and faster than the scan.
   Or keep the scan and check `i < items.len()`.
 - What isn't a fix: sorting `items` first (sorting doesn't make `Ord` honest,
-  and recent `std` may panic on a bad order);
+  and recent `std`
+  [may panic on a bad order](https://doc.rust-lang.org/std/primitive.slice.html#method.sort));
   `debug_assert!(items.is_sorted())`; restricting `T` to "numbers".
-- Contrast: `BTreeMap`, `sort`, and `binary_search` with a lying `Ord` give
-  wrong answers or panic. Never UB.
+- Contrast:
+  [`BTreeMap`](https://doc.rust-lang.org/std/collections/struct.BTreeMap.html),
+  `sort`, and `binary_search` with a lying `Ord` give wrong answers or panic.
+  Never UB.
 - with the original `lower_bound`, a debug build aborts at `std`'s optional
   `get_unchecked` check. In one local release build, it hung. UB promises
   nothing, including a crash.

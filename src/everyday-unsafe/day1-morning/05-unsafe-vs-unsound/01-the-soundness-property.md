@@ -12,6 +12,8 @@ minutes: 2
   property**:
 
 > **No matter what, Safe Rust clients can’t cause Undefined Behavior.**
+>
+> ([The Rustonomicon](https://doc.rust-lang.org/nomicon/safe-unsafe-meaning.html))
 
 This is the contract between safe and unsafe Rust.
 
@@ -21,11 +23,12 @@ This is the contract between safe and unsafe Rust.
   matter what", is the contract between safe and unsafe code, and unsound code
   breaks it.
 
-- The soundness property is the promise every safe API makes. The next slides
-  break it.
+- The soundness property is the promise every safe API makes. Starting with
+  [A Lamp That Works](02-lamp.md), the slides in this section break it.
 
-- Each bullet is one of the three words from the last slide, one step further:
-  what UB violates, what `unsafe` is for, and what makes code unsound.
+- Each bullet is one of the three words from
+  [Unsafe vs Unsound](../05-unsafe-vs-unsound.md), one step further: what UB
+  violates, what `unsafe` is for, and what makes code unsound.
 - Write the quote on the board next to the three words.
 
 </details>

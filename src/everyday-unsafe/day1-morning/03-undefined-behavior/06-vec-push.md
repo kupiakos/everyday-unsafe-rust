@@ -8,7 +8,7 @@ minutes: 3
 - Java checks for null on every store.
 - Rust doesn't: it's UB, not an exception.
 
-```rust,ignore
+```rust,ignore,editable
 pub fn push(&mut self, value: T) {
     if self.len == self.cap {
         self.grow(); // Afterward, `len < cap`.
@@ -24,8 +24,8 @@ pub fn push(&mut self, value: T) {
 - **Point:** UB is what lets Rust skip checks: `push` writes through its pointer
   with no null check, where Java has to check every store.
 
-- Story 1.3. Introduce `Vec` as the running example. We'll open it up in
-  "Operation vs Interface".
+- Introduce `Vec` as the running example. We'll open it up in
+  [Operation vs Interface](../07-operation-vs-interface.md).
 - Java defines what happens on a null or out-of-bounds store: an exception. So
   the runtime has to check, every time.
 - Rust says those cases are UB, so it doesn't have to check. `push` keeps

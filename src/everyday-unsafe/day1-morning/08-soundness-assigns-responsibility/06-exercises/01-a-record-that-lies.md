@@ -53,17 +53,22 @@ fn main() {
   - Bigger hint: `fn size(&self) -> usize { 100 }` makes `write_record` write 36
     bytes past `buf`. That's a stack buffer overflow, from safe code.
   - Hint for "who's at fault": can safe code break a safe trait's documented
-    rules? Recall `Eq`.
+    rules? See [`Eq` Can Lie](../02-eq-can-lie.md): a safe `Eq` impl can return
+    `false` for `x == x`, and that's a logic bug, never UB.
   - If they say "the impl broke the documented rule": is breaking a doc rule in
     safe code UB, or a logic bug?
   - Hint for the fixes: one changes `write_record`. The other changes what
     implementing `Record` promises.
-  - Bigger hint: `std` has the same problem. `ExactSizeIterator::len` is safe
-    and can lie. How does `TrustedLen` (unstable) solve it?
+  - Bigger hint: `std` has the same problem.
+    [`ExactSizeIterator::len`](https://doc.rust-lang.org/std/iter/trait.ExactSizeIterator.html)
+    is safe and can lie. How does
+    [`TrustedLen`](https://doc.rust-lang.org/std/iter/trait.TrustedLen.html#safety)
+    (unstable) solve it?
   - If they put "at most 64" in bold in the docs, or add a `debug_assert!`: does
     either one stop UB in a release build?
   - Ask: if `size` returns 100 but `write` does nothing, is it still UB? Yes:
-    `get_unchecked_mut(..n)` with `n > 64` is UB the moment the slice is made.
-    Nothing has to be written through it.
+    [`get_unchecked_mut(..n)`](https://doc.rust-lang.org/std/primitive.slice.html#method.get_unchecked_mut)
+    with `n > 64` is UB the moment the slice is made. Nothing has to be written
+    through it.
 
 </details>

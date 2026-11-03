@@ -15,9 +15,12 @@ minutes: 1
   bullet in a `SAFETY:` comment, and write a precise `# Safety` section of your
   own.
 
-- This is the logger's Fix 2, done carefully: the core loop.
+- This is the logger's
+  [Fix 2: Make `Handler::new` `unsafe`](../day1-morning/06-fixing-an-unsound-logger/03-fix-2-make-handler-new-unsafe.md),
+  done carefully: the core loop.
 - Raw pointers appear only enough to have something to document. The full
-  meaning of "valid" is on Day 2.
+  meaning of "valid" is in
+  [The Raw Pointer Checklist](../day2-morning/07-the-raw-pointer-checklist.md).
 - Ask the two questions and leave them open. The answers are `# Safety` and
   `SAFETY:`.
 

@@ -168,7 +168,9 @@ fn main() {
     `RefCell` isn't `Sync`.
 - Stretch goal: `pin!` owns the slot, so nobody can name it and move it. When
   the slot goes out of scope, the `Option` drops the `Widget`, and `Drop`
-  deregisters it. That's the pin drop guarantee doing the work.
+  deregisters it. That's the
+  [pin drop guarantee](https://doc.rust-lang.org/std/pin/index.html#drop-guarantee)
+  doing the work.
   - Not a fix: a `MaybeUninit<Widget>` slot. It never drops its contents, so
     nothing deregisters the `Widget`, and the registry keeps a dangling pointer:
     UB from safe code. That's why `pin-init` and `moveit` use slot types that do

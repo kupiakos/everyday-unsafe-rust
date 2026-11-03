@@ -8,7 +8,7 @@ minutes: 3
 - Types are still checked.
 - It unlocks a few extra operations.
 
-```rust,compile_fail
+```rust,compile_fail,editable
 fn main() {
     let mut v = vec![1, 2, 3];
     unsafe {
@@ -24,10 +24,12 @@ fn main() {
 - **Point:** `unsafe` turns off no checks: the borrow checker and type checks
   still run, and it only unlocks a few extra operations.
 
-- The same code as the first slide, inside `unsafe`. Same error.
-- The extra operations: dereference a raw pointer, call an `unsafe fn`, access a
-  `static mut`, read a `union` field, and `unsafe impl` a trait. There are a few
-  more, such as `unsafe extern` blocks.
+- The same code as [Purpose of `unsafe`](../01-purpose-of-unsafe.md), inside
+  `unsafe`. Same error.
+- [The extra operations](https://doc.rust-lang.org/reference/unsafety.html):
+  dereference a raw pointer, call an `unsafe fn`, access a `static mut`, read a
+  `union` field, and `unsafe impl` a trait. There are a few more, such as
+  `unsafe extern` blocks.
 - Usual wrong answer: "`unsafe` turns off Rust's checks." It turns off none of
   them. It only permits these operations.
 

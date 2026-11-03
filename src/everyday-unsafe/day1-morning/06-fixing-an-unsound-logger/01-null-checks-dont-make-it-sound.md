@@ -9,7 +9,7 @@ unsoundness**!
 
 ### `handler.rs`
 
-```rust
+```rust,editable
 #[derive(Default)]
 pub struct Logger {
     pub lines: Vec<String>,
@@ -38,7 +38,7 @@ impl Handler {
 
 ### `main.rs`
 
-```rust,no_run
+```rust,no_run,editable
 # mod handler {
 #     #[derive(Default)]
 #     pub struct Logger {
@@ -83,7 +83,8 @@ fn main() {
   pointers.
 - The validity of a pointer is based on how and when it is used, not the pointer
   value itself.
-- `NonNull::dangling` is roughly equivalent to a use-after-free.
+- [`NonNull::dangling`](https://doc.rust-lang.org/std/ptr/struct.NonNull.html#method.dangling)
+  is roughly equivalent to a use-after-free.
 
 - `NonNull::dangling()` is non-null, aligned, and points at no `Logger`.
 - A C++ developer has seen this before: a non-null pointer to a freed object.

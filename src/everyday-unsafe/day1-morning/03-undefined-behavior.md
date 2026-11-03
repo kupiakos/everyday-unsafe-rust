@@ -28,8 +28,11 @@ Undefined Behavior is a state at compile time and at runtime.
   code as if they always hold.
 - Break one, and the program's behavior is no longer described by its source
   code. Not "it crashes": anything.
-- Each row comes back in this section: null checks next, then the `unreachable`
-  branch, then `&mut`.
+- Each row comes back in this section: null checks in
+  [The Null Check That Vanished](03-undefined-behavior/01-null-check-c.md), the
+  `unreachable` branch in
+  [Time Travel](03-undefined-behavior/03-time-travel.md), and `&mut` in
+  [Why UB Exists: `&mut`](03-undefined-behavior/07-mut-references.md).
 - C and C++ have the same idea, with different rules.
 
 </details>

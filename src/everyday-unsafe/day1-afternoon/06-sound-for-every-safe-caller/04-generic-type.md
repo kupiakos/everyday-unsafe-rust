@@ -8,7 +8,7 @@ minutes: 1
 - Pick a `T` that breaks `clear_bad`.
 - Zero-sized? Huge? One with a destructor?
 
-```rust
+```rust,editable
 /// Drops every element of `v`, keeping its buffer.
 pub fn clear_bad<T>(v: &mut Vec<T>) {
     for x in v.iter_mut() {
@@ -24,7 +24,7 @@ pub fn clear_bad<T>(v: &mut Vec<T>) {
 <details>
 
 - **Question:** students pick a `T` that breaks `clear_bad`: one whose `Drop`
-  panics. The answer is on the next slide.
+  panics. The answer is on [A `Drop` That Panics](05-drop-that-panics.md).
 
 - Ask: "What `T` would you pass?" Give the class a minute.
 - Expected answer: a `T` whose `Drop` panics. `set_len(0)` never runs, and
@@ -33,6 +33,6 @@ pub fn clear_bad<T>(v: &mut Vec<T>) {
   but this code never divides by `size_of::<T>()` or moves a pointer.
 - Another: "Nothing, the `SAFETY:` comments are true." Ask which one assumes
   something about code that runs later.
-- The next slide shows the `T`.
+- [A `Drop` That Panics](05-drop-that-panics.md) shows the `T`.
 
 </details>
