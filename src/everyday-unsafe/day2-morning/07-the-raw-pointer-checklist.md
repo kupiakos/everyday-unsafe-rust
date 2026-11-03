@@ -4,9 +4,8 @@ minutes: 3
 
 # The Raw Pointer Checklist
 
-- [Fix 2](../day1-morning/06-fixing-an-unsound-logger/03-fix-2-make-handler-new-unsafe.md):
-  "`logger` must point to a live `Logger`".
-- [A null check wasn't enough](../day1-morning/06-fixing-an-unsound-logger/01-null-checks-dont-make-it-sound.md).
+- `Handler::new` below says "`logger` must point to a live `Logger`".
+- A null check isn't enough: a dangling pointer is non-null.
 - Today, "valid" becomes a
   [checklist](https://doc.rust-lang.org/std/ptr/index.html#safety).
 
@@ -43,6 +42,11 @@ unsafe { Handler::new(NonNull::dangling().as_ptr()) };
 
 - "What 'valid' meant all along". Day 1 sprinkled the word "valid"; this section
   unpacks it into parts students already know.
+- The code is Day 1's logger contract, from
+  [Fix 2: Make `Handler::new` `unsafe`](../day1-morning/06-fixing-an-unsound-logger/03-fix-2-make-handler-new-unsafe.md),
+  and its non-fix, from
+  [Null Checks Don't Make It Sound](../day1-morning/06-fixing-an-unsound-logger/01-null-checks-dont-make-it-sound.md).
+  Read it aloud before asking: students won't remember the original.
 - Ask: "What does 'live' mean for a pointer? List everything it needs." Write
   the answers on the board, and check them off from
   [Non-Null and Live](07-the-raw-pointer-checklist/01-non-null-and-live.md)

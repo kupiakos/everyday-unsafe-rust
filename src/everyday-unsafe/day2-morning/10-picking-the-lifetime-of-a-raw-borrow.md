@@ -30,9 +30,10 @@ fn main() {
   doesn't keep `v` alive.
 - When `unsafe` code turns a raw pointer into a reference, the compiler can't
   check anything. The lifetime you write is a claim, like a `SAFETY:` comment.
-- Ask: "In the logger's
-  [Fix 2](../day1-morning/06-fixing-an-unsound-logger/03-fix-2-make-handler-new-unsafe.md),
-  what did 'for as long as the `Handler` exists' claim?" Valid until the
-  `Handler` is dropped: a lifetime written in prose.
+- Ask: "A `# Safety` section says `logger` must stay live 'for as long as the
+  `Handler` exists'. What does that claim?" Valid until the `Handler` is
+  dropped: a lifetime written in prose. (It's Day 1's
+  [`unsafe fn Handler::new`](../day1-morning/06-fixing-an-unsound-logger/03-fix-2-make-handler-new-unsafe.md);
+  say the bullet aloud rather than asking who remembers it.)
 
 </details>

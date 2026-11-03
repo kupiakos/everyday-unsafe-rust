@@ -4,9 +4,8 @@ minutes: 3
 
 # Make Preconditions Checkable
 
-- In
-  [Writing the Contract Down](../../day1-morning/04-contracts-between-engineers/08-writing-it-down.md),
-  no caller could check `dst`'s size.
+- An `unsafe fn decompress_unchecked(src, dst: *mut u8)` needs `dst` big enough
+  for the output. No caller can check that.
 - Take `dst: &mut [u8]`: the slice knows its length.
 - Call the C function that checks it.
 - The precondition is gone, so the function is safe.

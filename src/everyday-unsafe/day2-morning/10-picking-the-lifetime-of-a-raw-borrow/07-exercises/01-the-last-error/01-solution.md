@@ -19,7 +19,9 @@ unsafe fn lib_last_error(h: *mut RawHandle) -> *const c_char {
 }
 
 pub struct Client {
-    // Safety invariant: `raw` came from `Box::into_raw`. Only `Drop` frees it.
+    // Safety invariant: until `drop`, `raw` is valid for aligned reads and
+    // writes of a `RawHandle`, may be passed to `Box::from_raw`, and nothing
+    // outside `Client` uses it.
     raw: *mut RawHandle,
 }
 
@@ -29,11 +31,11 @@ impl Client {
         Client { raw: Box::into_raw(raw) }
     }
     pub fn connect(&self, port: u16) -> bool {
-        // SAFETY: `raw` is live, by the invariant on `raw`.
+        // SAFETY: `raw` is valid for reads and writes, by its invariant.
         unsafe { lib_connect(self.raw, port) }
     }
     pub fn last_error(&mut self) -> &str {
-        // SAFETY: `raw` is live, by the invariant on `raw`.
+        // SAFETY: `raw` is valid for reads and writes, by its invariant.
         let p = unsafe { lib_last_error(self.raw) };
         // SAFETY: `p` is a C string, valid until the next call on the handle.
         // The result borrows `self` mutably, so no such call can happen, and
@@ -44,7 +46,8 @@ impl Client {
 
 impl Drop for Client {
     fn drop(&mut self) {
-        // SAFETY: By the invariant on `raw`, nothing else frees it.
+        // SAFETY: `raw` may be passed to `Box::from_raw`, by its invariant,
+        // and this is its last use.
         drop(unsafe { Box::from_raw(self.raw) });
     }
 }

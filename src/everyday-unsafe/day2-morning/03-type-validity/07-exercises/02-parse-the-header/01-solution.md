@@ -69,7 +69,10 @@ fn main() {
 - Any `buf[0]` other than the four listed values, and any `buf[1]` other than 0
   or 1, is UB, at the `transmute`.
   - Usual wrong answer: "only unknown commands." The `bool` is the same bug, and
-    it's easier to miss because "C would treat 7 as true".
+    it's easier to miss because "C would treat 7 as true". A C `(bool)` cast
+    would, but the C code reads the byte through a `bool *`, which is UB in C
+    too. The command is the reverse: fine in C, where an `enum` holds any
+    integer, and UB in Rust.
   - What isn't a fix: `debug_assert!` before the `transmute` (release builds
     still have UB), or a `_ =>` arm in a later `match` on `Command`.
 

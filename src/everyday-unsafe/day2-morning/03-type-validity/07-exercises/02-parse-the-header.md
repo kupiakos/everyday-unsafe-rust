@@ -4,7 +4,7 @@ minutes: 10
 
 # Exercise: Parse the Header
 
-- Which input bytes make `parse_header_c_style` UB?
+- `parse_header_c_style` is commented out. Why? Which input bytes make it UB?
 - Implement `TryFrom<u8>` for `Command`.
 - Implement `parse_header` with no `unsafe`.
 
@@ -26,13 +26,16 @@ struct Header {
     urgent: bool,
 }
 
-fn parse_header_c_style(buf: &[u8; 2]) -> Header {
-    // The C port: `cmd = (enum command)buf[0]; urgent = (bool)buf[1];`
-    Header {
-        command: unsafe { std::mem::transmute::<u8, Command>(buf[0]) },
-        urgent: unsafe { std::mem::transmute::<u8, bool>(buf[1]) },
-    }
-}
+// Ported from this C:
+//     enum command cmd = buf[0];
+//     bool urgent = *(bool *)&buf[1];
+//
+// fn parse_header_c_style(buf: &[u8; 2]) -> Header {
+//     Header {
+//         command: unsafe { std::mem::transmute::<u8, Command>(buf[0]) },
+//         urgent: unsafe { std::mem::transmute::<u8, bool>(buf[1]) },
+//     }
+// }
 
 #[derive(Debug, PartialEq)]
 enum ParseError {
@@ -65,11 +68,16 @@ fn main() {
 - **Goal:** porting a C cast soundly: both the enum byte and the `bool` byte
   need a check before the value exists.
 
+- Open by asking: "Why is this function commented out?" Expected: it's UB for
+  most inputs, so it can't even run as a demo.
+- The C reads the flag through a pointer cast, not `(bool)buf[1]`, which would
+  check the value. Reading a `bool` that holds 7 is UB in C too. A C `enum` may
+  hold any value of its integer type, so `cmd` is fine in C. A Rust enum can't.
 - Hints:
   - Hint: each `transmute` makes a value of a type. Which `u8` values are valid
     for that type?
   - If they say "only unknown commands": what type is `buf[1]` transmuted into?
-    Would C treat 7 as true?
+    Is 7 a valid `bool`?
   - Non-contiguous values (`0x01`, `0x10`, `0x11`, `0xFF`) rule out a range
     check like `b <= 3`.
   - If they add a `debug_assert!` before the `transmute`: what's left of it in a

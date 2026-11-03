@@ -4,8 +4,7 @@ minutes: 4
 
 # The Logger, With Threads
 
-- [Fix 2's logger](../../day1-morning/06-fixing-an-unsound-logger/03-fix-2-make-handler-new-unsafe.md)
-  ignored threads.
+- A logger owned by C++, now a global shared across threads.
 - Now the `Mutex` guards the `Logger` itself.
 - `# Safety` gains a concurrency bullet.
 
@@ -69,10 +68,10 @@ fn build_default_sink() -> Box<dyn fmt::Write + Send> {
 - **Point:** the logger as a global shared across threads: hold the lock for all
   of `log`, require `Send` sinks, and add a concurrency bullet to `# Safety`.
 
-- [Fix 2](../../day1-morning/06-fixing-an-unsound-logger/03-fix-2-make-handler-new-unsafe.md)'s
-  `unsafe fn Handler::new(*mut Logger)` became a global `init_logger`. Three
-  changes: a lock held for all of `log`, `Send` sinks, and the second `# Safety`
-  bullet.
+- Day 1's single-threaded
+  [`unsafe fn Handler::new(*mut Logger)`](../../day1-morning/06-fixing-an-unsound-logger/03-fix-2-make-handler-new-unsafe.md)
+  became a global `init_logger`. Three changes: a lock held for all of `log`,
+  `Send` sinks, and the second `# Safety` bullet.
 - The obvious `static LOGGER: Mutex<*mut Logger>` doesn't compile: a `static`
   must be `Sync`, and a
   [`Mutex<T>` is only `Sync` if `T: Send`](https://doc.rust-lang.org/std/sync/struct.Mutex.html#impl-Sync-for-Mutex%3CT%3E).
